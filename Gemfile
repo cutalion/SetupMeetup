@@ -35,3 +35,17 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+group :test do
+  gem "rspec-rails"
+  gem "capybara"
+  gem "capybara-webkit"
+  gem "spin"
+  gem "guard"
+  gem "guard-rspec"
+  gem "guard-spin" 
+  gem "factory_girl_rails"
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-fchange', :require => false
+  gem 'libnotify'
+end
