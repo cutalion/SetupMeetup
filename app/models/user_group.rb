@@ -1,0 +1,3 @@
+class UserGroup
+
+end

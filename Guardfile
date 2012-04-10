@@ -17,4 +17,8 @@ guard 'spin' do
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
   # Capybara request specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
+
+  # Custom rules
+  watch('app/controllers/landing_controller.rb')      { 'spec/requests/home_page_spec.rb' }
+  watch(%r{app/views/landing/.*})                     { 'spec/requests/home_page_spec.rb' }
 end
