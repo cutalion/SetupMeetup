@@ -2,11 +2,15 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem "mongoid", "~> 2.4"
+gem "bson_ext", "~> 1.5"
 
 gem "haml-rails"
-
+gem 'jquery-rails'
+gem "devise"
+gem "omniauth-facebook"
+gem "omniauth-twitter"
+gem "omniauth-openid"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,9 +22,26 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem "twitter-bootstrap-rails"
 end
 
-gem 'jquery-rails'
+group :test do
+  gem "rspec-rails"
+  gem "capybara"
+  gem "capybara-webkit"
+  gem 'turnip'
+  gem 'mongoid-rspec'
+  gem "spin"
+  gem "guard"
+  gem "guard-rspec"
+  gem "guard-spin" 
+  gem "factory_girl_rails"
+  gem 'database_cleaner'
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-fchange', :require => false
+  gem 'libnotify'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -36,17 +57,3 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
-group :test do
-  gem "rspec-rails"
-  gem "capybara"
-  gem "capybara-webkit"
-  gem "spin"
-  gem "guard"
-  gem "guard-rspec"
-  gem "guard-spin" 
-  gem "factory_girl_rails"
-  gem 'rb-inotify', :require => false
-  gem 'rb-fsevent', :require => false
-  gem 'rb-fchange', :require => false
-  gem 'libnotify'
-end
