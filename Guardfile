@@ -6,6 +6,8 @@ guard 'spin' do
   # --colour --fail-fast --format documentation --tag ~slow
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
+  watch(%r{^spec/.+\.feature$})
+  watch(%r{^spec/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("spec/**/#{m[1]}.feature")][0] || 'spec/acceptance' }
   watch('spec/spec_helper.rb')  { "spec" }
 
   # Rails example

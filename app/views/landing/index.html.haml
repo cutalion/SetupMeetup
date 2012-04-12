@@ -1,4 +1,6 @@
 - if user_groups.any?
-  
+  %ul
+    - user_groups.each do |user_group|
+      %li= user_group.name
 - else
- %p There are no user groups yet.
+  %p There are no user groups yet.

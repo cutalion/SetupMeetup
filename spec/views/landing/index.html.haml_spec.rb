@@ -15,6 +15,8 @@ describe "landing/index.html" do
                                stub(name: "User Group 2") ])
       render
       rendered.should_not have_content "There are no user groups yet"
+      rendered.should have_content "User Group 1"
+      rendered.should have_content "User Group 2"
     end
   end
 end
