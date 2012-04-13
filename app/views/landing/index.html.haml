@@ -1,6 +1,6 @@
-- if user_groups.any?
+- if events.any?
   %ul
-    - user_groups.each do |user_group|
-      %li= user_group.name
+    - events.each do |event|
+      %li= event.name
 - else
-  %p There are no user groups yet.
+  %p There are no events yet.

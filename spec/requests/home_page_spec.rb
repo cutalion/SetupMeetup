@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe "Home Page" do
-  context "when there are no user groups" do
-    it "should display 'No User Groups yet'" do
+  context "when there are no events" do
+    it "should display 'No events yet'" do
       visit "/"
-      page.should have_content "There are no user groups yet"
+      page.should have_content "There are no events yet"
     end
   end
 end

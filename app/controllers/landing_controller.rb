@@ -5,8 +5,8 @@ class LandingController < ApplicationController
 
   private
 
-  def user_groups
+  def events
     []
   end
-  helper_method :user_groups
+  helper_method :events
 end

@@ -1,22 +1,22 @@
 require 'spec_helper'
 
 describe "landing/index.html" do
-  context "when there are no user groups" do
-    it "should display 'No User Groups yet'" do
-      view.stub(user_groups: [])
+  context "when there are no events" do
+    it "should display 'No events yet'" do
+      view.stub(events: [])
       render
-      rendered.should have_content "There are no user groups yet"
+      rendered.should have_content "There are no events yet"
     end
   end
 
-  context "when there are many user groups" do
+  context "when there are many events" do
     it "should display all of them" do
-      view.stub(user_groups: [ stub(name: "User Group 1"), 
-                               stub(name: "User Group 2") ])
+      view.stub(events: [ stub(name: "event 1"), 
+                          stub(name: "event 2") ])
       render
-      rendered.should_not have_content "There are no user groups yet"
-      rendered.should have_content "User Group 1"
-      rendered.should have_content "User Group 2"
+      rendered.should_not have_content "There are no events yet"
+      rendered.should have_content "event 1"
+      rendered.should have_content "event 2"
     end
   end
 end
