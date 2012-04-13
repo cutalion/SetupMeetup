@@ -30,7 +30,7 @@ describe User do
     user.name.should == "User#{user.id}"
   end
 
-  pending "should send welcome email after create" do
+  pending "should recieve welcome email after create" do
     user = Factory.build :user
     mail = stub
     Notifier.should_receive(:welcome).with(user).and_return(mail)
