@@ -1,3 +1,5 @@
+%p= link_to "Create event", new_event_path, class: "btn primary"
+
 - if events.any?
   %ul
     - events.each do |event|

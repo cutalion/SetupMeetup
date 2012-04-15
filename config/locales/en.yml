@@ -3,3 +3,6 @@
 
 en:
   hello: "Hello world"
+  time:
+    formats:
+      time_only: "%H:%M"

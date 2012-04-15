@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "landing/index.html" do
+describe "landing/index.html.haml" do
   context "when there are no events" do
     it "should display 'No events yet'" do
       view.stub(events: [])

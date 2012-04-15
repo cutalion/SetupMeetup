@@ -11,6 +11,8 @@ gem "devise"
 gem "omniauth-facebook"
 gem "omniauth-twitter"
 gem "omniauth-openid"
+gem "inherited_resources"
+gem "simple_form"
 
 # Gems used only for assets and not required
 # in production environments by default.
