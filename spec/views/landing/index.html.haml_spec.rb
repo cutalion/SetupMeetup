@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe "landing/index.html.haml" do
+  before do
+    view.stub events: []
+    view.stub user_signed_in?: false
+  end
+
   context "when there are no events" do
     it "should display 'No events yet'" do
       view.stub(events: [])
@@ -17,6 +22,22 @@ describe "landing/index.html.haml" do
       rendered.should_not have_content "There are no events yet"
       rendered.should have_content "event 1"
       rendered.should have_content "event 2"
+    end
+  end
+
+  context "when there is a logged in user" do
+    it "should show 'Create Event' button" do
+      view.stub user_signed_in?: true
+      render
+      rendered.should have_content "Create Event"
+    end
+  end
+
+  context "when there is a guest" do
+    it "should not show 'Create Event' button" do
+      view.stub user_signed_in?: false
+      render
+      rendered.should_not have_content "Create Event"
     end
   end
 end

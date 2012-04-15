@@ -213,8 +213,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  config.omniauth :facebook, ENV['FACEBOOK_SETUPMEETUP_APP_ID'], ENV['FACEBOOK_SETUPMEETUP_SECRET']
-  config.omniauth :twitter, ENV['TWITTER_SETUPMEETUP_KEY'], ENV['TWITTER_SETUPMEETUP_SECRET']
+  # config.omniauth :facebook, ENV['FACEBOOK_SETUPMEETUP_APP_ID'], ENV['FACEBOOK_SETUPMEETUP_SECRET']
+  # config.omniauth :twitter, ENV['TWITTER_SETUPMEETUP_KEY'], ENV['TWITTER_SETUPMEETUP_SECRET']
   config.omniauth :open_id, :store => OpenID::Store::Filesystem.new('/tmp'), 
                             :name => 'google', 
                             :identifier => 'https://www.google.com/accounts/o8/id', 

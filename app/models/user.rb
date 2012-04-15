@@ -5,6 +5,7 @@ class User
   include PasswordGenerator
 
   has_many :authorizations
+  has_many :events, foreign_key: :owner_id
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

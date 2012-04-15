@@ -3,7 +3,7 @@ Feature: Create new event
   I want to create a page for new meetup
 
   Scenario: Create new event
-    Given I'm registered user
+    Given I'm a signed in user
     And I'm on the home page
     When click "Create event" button
     And fill out event form
