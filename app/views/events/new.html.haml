@@ -1,6 +1,6 @@
 = simple_form_for(resource, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :name
-  = f.input :description
-  = f.input :date
-  = f.input :time
+  = f.input :date, as: :date
+  = f.input :time, as: :time
+  = f.input :description, as: :text, input_html: { rows: 4 }
   = f.submit

@@ -3,10 +3,13 @@ step "click \"Create event\" button" do
 end
 
 step "fill out event form" do
-  fill_in "Name",        with: "New Rails Meetup"
-  fill_in "Description", with: "Hey guys, new meetup is on next Thursday"
-  fill_in "Date",        with: "2012-04-05"
-  fill_in "Time",        with: "18:30"
+  fill_in "Name",         with: "New Rails Meetup"
+  fill_in "Description",  with: "Hey guys, new meetup is on next Thursday"
+  select  "2012",         from: "event_date_1i"
+  select  "May",          from: "event_date_2i"
+  select  "5",            from: "event_date_3i"
+  select  "18",           from: "event_time_4i"
+  select  "30",           from: "event_time_5i"
   click_button "Create Event"
 end
 

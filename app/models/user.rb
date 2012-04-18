@@ -4,7 +4,7 @@ class User
   include Mongoid::Document
   include PasswordGenerator
 
-  has_many :authorizations
+  has_many :authorizations, dependent: :destroy
   has_many :events, foreign_key: :owner_id
 
   # Include default devise modules. Others available are:
@@ -56,7 +56,12 @@ class User
 
   def self.create_with_oauth(oauth_data)
     password = SecureRandom.base64(6)
-    user = User.new(:email => oauth_data.info.email, :password => password, :password_confirmation => password) 
+    user = User.new(
+      :email                 => oauth_data.info.email,
+      :password              => password,
+      :password_confirmation => password
+    )
+    user.name = oauth_data.info.name unless User.where(name: name).exists?
     user.email_not_required!
     user.save!
     user
@@ -64,8 +69,8 @@ class User
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["info"]
-        user.email = data["email"]
+      if session["devise.oauth_data"] && session["devise.oauth_data"]["info"]
+        user.email = session["devise.oauth_data"]["info"]["email"]
       end
     end
   end

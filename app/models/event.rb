@@ -1,5 +1,7 @@
 class Event
   include Mongoid::Document
+  include Mongoid::MultiParameterAttributes
+
 
   field :name
   field :description
@@ -12,4 +14,6 @@ class Event
   validates :name, :date, :owner, presence: true
 
   attr_accessible :name, :description, :date, :time
+
+  scope :future_events, where(:date.gte => Date.today)
 end

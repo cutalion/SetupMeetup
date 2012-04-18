@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "landing/index.html.haml" do
+describe "landing/index" do
   before do
     view.stub events: []
     view.stub user_signed_in?: false
@@ -29,7 +29,7 @@ describe "landing/index.html.haml" do
     it "should show 'Create Event' button" do
       view.stub user_signed_in?: true
       render
-      rendered.should have_content "Create Event"
+      rendered.should have_content "Create event"
     end
   end
 
@@ -37,7 +37,7 @@ describe "landing/index.html.haml" do
     it "should not show 'Create Event' button" do
       view.stub user_signed_in?: false
       render
-      rendered.should_not have_content "Create Event"
+      rendered.should_not have_content "Create event"
     end
   end
 end

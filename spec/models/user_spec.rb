@@ -73,11 +73,17 @@ describe User do
       user.should be_persisted
       user.email.should_not be_blank
     end
+
+    it "should set the name of the user if it's available" do
+      user = User.create_with_oauth(OmniAuth.config.mock_auth[:google])
+      user.should be_persisted
+      user.name.should_not be_blank
+    end
   end
 
   describe ".new_with_session" do
     let(:session) {{
-      "devise.facebook_data" => { 
+      "devise.oauth_data" => { 
         "info" => { 
           "email" => "email+fromsession@example.com"
         }

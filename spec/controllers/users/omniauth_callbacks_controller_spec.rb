@@ -22,7 +22,7 @@ describe Users::OmniauthCallbacksController do
       before { get :facebook }
       it { should redirect_to new_user_registration_path } 
       it "should store omniauth data for later usage in session" do
-        session["devise.facebook_data"].should == request.env["omniauth.auth"]
+        session["devise.oauth_data"].should == request.env["omniauth.auth"]
       end
     end
   end
@@ -49,7 +49,7 @@ describe Users::OmniauthCallbacksController do
       before { get :twitter }
       it { should redirect_to new_user_registration_path } 
       it "should store omniauth data for later usage in session" do
-        session["devise.twitter_data"].should == request.env["omniauth.auth"]
+        session["devise.oauth_data"].should == request.env["omniauth.auth"]
       end
     end
   end
@@ -76,7 +76,7 @@ describe Users::OmniauthCallbacksController do
       before { get :google }
       it { should redirect_to new_user_registration_path } 
       it "should store omniauth data for later usage in session" do
-        session["devise.google_data"].should == request.env["omniauth.auth"]
+        session["devise.oauth_data"].should == request.env["omniauth.auth"]
       end
     end
   end
