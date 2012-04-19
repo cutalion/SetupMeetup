@@ -7,4 +7,8 @@ class EventsController < ApplicationController
   def begin_of_association_chain
     current_user
   end
+
+  def end_of_association_chain
+    begin_of_association_chain.owned_events
+  end
 end

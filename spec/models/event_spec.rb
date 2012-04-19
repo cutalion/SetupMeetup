@@ -6,6 +6,7 @@ describe Event do
   it { should validate_presence_of :owner }
 
   it { should belong_to :owner }
+  it { should have_and_belong_to_many :participants }
 
   specify ":owner should not be accessible through mass-assignment" do
     event = Event.new owner: mock_model(User)
@@ -28,5 +29,21 @@ describe Event do
       past_event = FactoryGirl.create :event, date: 1.day.ago
       Event.future_events.should == []
     end
+  end
+
+  describe "#add_participant" do
+    let(:event) { Event.new }
+    let(:user)  { User.new  }
+
+    it "should add user to the list of participants" do
+      event.add_participant user
+      event.participants.should include user
+      user.events.should include event
+    end
+  end
+
+  specify "owner should be participant of the event also" do
+    event = FactoryGirl.create :event
+    event.participants.should include event.owner
   end
 end
