@@ -43,6 +43,8 @@ describe Event do
   end
 
   specify "owner should be participant of the event also" do
+    enable_observer(EventOwnerObserver).for(Event)
+
     event = FactoryGirl.create :event
     event.participants.should include event.owner
   end
