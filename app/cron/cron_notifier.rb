@@ -1,0 +1,2 @@
+class CronNotifier
+end
