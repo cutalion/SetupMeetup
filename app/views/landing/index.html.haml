@@ -4,6 +4,6 @@
 - if events.any?
   %ul
     - events.each do |event|
-      %li= event.name
+      %li= link_to event.name, event_path(event)
 - else
   %p There are no events yet.
