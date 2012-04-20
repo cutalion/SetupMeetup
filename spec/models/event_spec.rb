@@ -37,8 +37,15 @@ describe Event do
 
     it "should add user to the list of participants" do
       event.add_participant user
-      event.participants.should include user
-      user.events.should include event
+      event.participant_ids.should include user.id
+      user.event_ids.should include event.id
+    end
+
+    it "should not add participant twice" do
+      event.add_participant user
+      event.add_participant user
+      event.participant_ids == [user.id]
+      user.event_ids.should == [event.id]
     end
   end
 

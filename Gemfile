@@ -45,6 +45,7 @@ group :test do
   gem 'rb-fsevent', :require => false
   gem 'rb-fchange', :require => false
   gem 'libnotify'
+  gem 'launchy', :require => false
 end
 
 # To use ActiveModel has_secure_password

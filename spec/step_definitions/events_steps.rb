@@ -22,3 +22,18 @@ step "I should see new event" do
   page.should have_content last_event.name
   page.should have_content last_event.description
 end
+
+step "I'm on the event page" do
+  @event ||= FactoryGirl.create :event
+  visit event_path(@event)
+end
+
+step "I join the event" do
+  click_link "Join"
+end
+
+step "I should be in the participants list" do
+  within(".participants") do
+    page.should have_content @user.name
+  end
+end

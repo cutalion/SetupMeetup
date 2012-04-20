@@ -1,6 +1,7 @@
 step "I'm a signed in user" do
-  step "I'm registered user"
+  # step "I'm registered user"
   step "I click \"Sign in with Google\" button"
+  @user = User.last
 end
 
 step "I click logout" do

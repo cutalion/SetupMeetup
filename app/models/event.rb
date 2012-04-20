@@ -19,7 +19,7 @@ class Event
   scope :future_events, where(:date.gte => Date.today)
 
   def add_participant(user)
+    return participants if participants.include?(user)
     participants << user
-    user.events << self
   end
 end

@@ -1,14 +1,14 @@
 class EventsController < ApplicationController
   inherit_resources
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: :show
 
-  protected
-
-  def begin_of_association_chain
-    current_user
+  def create
+    @event = current_user.owned_events.build params[:event]
+    create!
   end
 
-  def end_of_association_chain
-    begin_of_association_chain.owned_events
+  def join
+    resource.add_participant(current_user)
+    redirect_to resource
   end
 end
