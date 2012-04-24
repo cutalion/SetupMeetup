@@ -3,4 +3,5 @@
   = f.input :date, as: :date
   = f.input :time, as: :time
   = f.input :description, as: :text, input_html: { rows: 4 }
-  = f.submit
+  .form-actions
+    = f.submit "Create Event", class: "btn btn-primary"
