@@ -37,3 +37,7 @@ step "I should be in the participants list" do
     page.should have_content @user.name
   end
 end
+
+step "all users should be notified about new event" do
+  EventNotifier.deliveries.count.should == User.count
+end

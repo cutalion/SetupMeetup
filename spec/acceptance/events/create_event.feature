@@ -9,3 +9,4 @@ Feature: Create new event
     And fill out event form
     Then new event should be created
     And I should see new event
+    And all users should be notified about new event

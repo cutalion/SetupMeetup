@@ -1,20 +1,9 @@
 RSpec.configure do |config|
-  config.before(:suite) do
-    Mongoid.observers.disable :all
-  end
-end
-
-class TestObsreverActivator
-  def initialize(observer_class)
-    @observer_class = observer_class
+  config.before(:each) do
+    Mongoid.observers.disable(:all) unless example.metadata[:type] == :request
   end
 
-  def for(model_class)
-    model_class.observers.should_receive(:disabled_for?).with(@observer_class.instance).and_return(false)
-    Mongoid.observers.should_receive(:disabled_for?).with(@observer_class.instance).and_return(false)
+  config.after(:each) do
+    Mongoid.observers.enable(:all) unless example.metadata[:type] == :request
   end
-end
-
-def enable_observer(observer_class)
-  TestObsreverActivator.new observer_class
 end
