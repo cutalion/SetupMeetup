@@ -5,6 +5,7 @@ end
 step "fill out event form" do
   fill_in "Name",         with: "New Rails Meetup"
   fill_in "Description",  with: "Hey guys, new meetup is on next Thursday"
+  fill_in "Address",      with: "123 Tea Party Lane"
   select  "2012",         from: "event_date_1i"
   select  "May",          from: "event_date_2i"
   select  "5",            from: "event_date_3i"
@@ -21,6 +22,7 @@ step "I should see new event" do
   last_event = Event.last
   page.should have_content last_event.name
   page.should have_content last_event.description
+  page.should have_content last_event.address
 end
 
 step "I'm on the event page" do

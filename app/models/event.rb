@@ -5,6 +5,7 @@ class Event
 
   field :name
   field :description
+  field :address
   field :date,       type: Date
   field :time,       type: Time
   field :owner_id,   type: Integer
@@ -14,7 +15,7 @@ class Event
 
   validates :name, :date, :owner, presence: true
 
-  attr_accessible :name, :description, :date, :time
+  attr_accessible :name, :description, :address, :date, :time
 
   scope :future_events, where(:date.gte => Date.today)
 

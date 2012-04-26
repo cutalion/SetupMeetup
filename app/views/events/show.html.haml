@@ -6,6 +6,7 @@
     = link_to "Edit", [:edit, resource], class: 'btn btn-primary btn-large'
 
 %p= resource.description
+%p== Address: #{resource.address}
 %p== Date: #{resource.date}
 - if resource.time.present?
   %p== Time: #{l resource.time, format: :time_only}
