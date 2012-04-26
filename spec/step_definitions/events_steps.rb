@@ -41,3 +41,20 @@ end
 step "all users should be notified about new event" do
   EventNotifier.deliveries.count.should == User.count
 end
+
+step "I'm an owner of the event" do
+  @event = FactoryGirl.create :event, owner: @user
+end
+
+step "I click \"Edit\" button" do
+  click_link "Edit"
+end
+
+step "I change the event" do
+  fill_in :description, with: "Changed!"
+  click_button "Edit Event"
+end
+
+step "I should see updated event" do
+  page.should have_content "Changed!"
+end

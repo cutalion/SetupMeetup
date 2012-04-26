@@ -7,6 +7,16 @@ class EventsController < ApplicationController
     create!
   end
 
+  def edit
+    @event = current_user.owned_events.find params[:id]
+    edit!
+  end
+
+  def update
+    @event = current_user.owned_events.find params[:id]
+    update!
+  end
+
   def join
     resource.add_participant(current_user)
     redirect_to resource

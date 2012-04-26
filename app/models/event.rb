@@ -22,4 +22,8 @@ class Event
     return participants if participants.include?(user)
     participants << user
   end
+
+  def owned_by?(user)
+    owner == user
+  end
 end
