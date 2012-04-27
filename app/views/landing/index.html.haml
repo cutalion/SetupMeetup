@@ -1,5 +1,7 @@
 - if user_signed_in?
   %p= link_to "Create event", new_event_path, class: "btn btn-primary btn-large"
+- else
+  = render 'welcome'
 
 - if events.any?
   %ul
@@ -7,3 +9,4 @@
       %li= link_to event.name, event_path(event)
 - else
   %p There are no events yet.
+
