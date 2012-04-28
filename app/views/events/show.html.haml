@@ -1,15 +1,19 @@
-%h1
-  = resource.name
-  - if user_signed_in? and not current_user.participated?(resource)
-    = link_to "Join", [:join, resource], method: :put, class: 'btn btn-primary btn-large'
 
-%p= resource.description
-%p== Date: #{resource.date}
-- if resource.time.present?
-  %p== Time: #{l resource.time, format: :time_only}
+.page-header
+  %h1
+    = resource.name
+    - if user_signed_in? and not current_user.participated?(resource)
+      = link_to "Join", [:join, resource], method: :put, class: 'btn btn-primary btn-large'
 
-%h2 Participants
+.row
+  .span12
+    %p= resource.description
+    %p== Date: #{resource.date}
+    - if resource.time.present?
+      %p== Time: #{l resource.time, format: :time_only}
 
-%ul.participants
-  - resource.participants.each do |participant|
-    %li= participant.name  
+    %h2 Participants
+
+    %ul.participants
+      - resource.participants.each do |participant|
+        %li= participant.name

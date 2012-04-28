@@ -9,7 +9,7 @@
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag "application", :media => "all"
-    %link(href="images/favicon.ico" rel="shortcut icon")
+    %link(href="favicon.ico" rel="shortcut icon")
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon")
     %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72")
     %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114")
@@ -17,23 +17,23 @@
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container-fluid
+        .container
           %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
           = link_to "SetupMeetup", root_path, class: :brand
           .container.nav-collapse
-            -# %ul.nav
-            -#   %li= link_to "Link 1", "/path1"
-            -#   %li= link_to "Link 2", "/path2"
-            -#   %li= link_to "Link 3", "/path3"
+            %ul.nav
+              %li= link_to "Create event", new_event_path
+              -#%li= link_to "Link 2", "/path2"
+              -#%li= link_to "Link 3", "/path3"
             %ul.nav.pull-right
               - if user_signed_in?
                 %li
                   %span== Hello, #{current_user.name}!
                 %li.divider-vertical
-                %li= link_to "Sign out", destroy_user_session_path, method: :delete 
+                %li= link_to "Sign out", destroy_user_session_path, method: :delete
               - else
                 -# %li= link_to "Sign in", new_user_session_path
                 -# %li= link_to "Sign up", new_user_registration_path
@@ -41,26 +41,18 @@
                 -# %li= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter)
                 %li= link_to "Sign in with Google", user_omniauth_authorize_path(:google)
 
-    .container-fluid
-      .row-fluid
-        .span9
-          - flash.each do |name, msg| 
+    .container
+      .row
+        .span12
+          - flash.each do |name, msg|
             %div{ class: "alert alert-#{name == :notice ? "success" : "error"}" }
               %a{ class: "close", data: { dismiss: "alert" } } ×
-              = msg 
+              = msg
 
-      .row-fluid
-        -# .span3
-        -#   .well.sidebar-nav
-        -#     %ul.nav.nav-list
-        -#       %li.nav-header Sidebar
-        -#       %li= link_to "Link 1", "/path1"
-        -#       %li= link_to "Link 2", "/path2"
-        -#       %li= link_to "Link 3", "/path3"
-        .span12
-          = yield
-    
-      %footer
+
+      = yield
+
+      %footer.footer
         %p &copy; SetupMeetup 2012
     /
       Javascripts
