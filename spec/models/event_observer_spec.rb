@@ -8,8 +8,8 @@ describe EventObserver do
   it "should notify all users about new event" do
     User.stub all: [user]
 
+    EventNotifier.should_receive(:delay).and_return(EventNotifier)
     EventNotifier.should_receive(:event_created).with(event, user).and_return(mail)
-    mail.should_receive :deliver
 
     EventObserver.instance.after_create event
   end
@@ -17,8 +17,8 @@ describe EventObserver do
   describe "notification about changed date" do
     it "should notify participants about changed date of the event" do
       event.stub participants: [user], date_changed?: true
+      EventNotifier.should_receive(:delay).and_return(EventNotifier)
       EventNotifier.should_receive(:event_updated).with(event, user).and_return(mail)
-      mail.should_receive :deliver
 
       EventObserver.instance.after_update event
     end
@@ -38,8 +38,8 @@ describe EventObserver do
 
   it "should notify participants about changed time of event" do
     event.stub participants: [user], time_changed?: true
+    EventNotifier.should_receive(:delay).and_return(EventNotifier)
     EventNotifier.should_receive(:event_updated).with(event, user).and_return(mail)
-    mail.should_receive :deliver
 
     EventObserver.instance.after_update event
   end
