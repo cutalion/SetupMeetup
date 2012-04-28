@@ -1,12 +1,22 @@
-- if user_signed_in?
-  %p= link_to "Create event", new_event_path, class: "btn btn-primary btn-large"
-- else
+- unless user_signed_in?
   = render 'welcome'
 
 - if events.any?
-  %ul
+  .page-header
+    = link_to "Create event", [:new, :event], class: "btn btn-primary pull-right"
+    %h1 Events
+
+  .row
     - events.each do |event|
-      %li= link_to event.name, event_path(event)
+      .span2
+        = event.date.to_s(:short)
+      .span10
+        = link_to event.name, event_path(event)
+
 - else
-  %p There are no events yet.
+  %h2 There are no events yet.
+
+  - if user_signed_in?
+    %br
+    = link_to "Create event", [:new, :event], class: "btn btn-primary btn-large"
 
