@@ -30,14 +30,19 @@ describe EventObserver do
     end
 
     it "should not notify participants if date wasn't changed" do
-      event.stub participants: [user], date_changed?: false
+      event.stub participants: [user], date_changed?: false, time_changed?: false
       EventObserver.instance.after_update event
       EventNotifier.deliveries.should be_empty
     end
   end
 
+  it "should notify participants about changed time of event" do
+    event.stub participants: [user], time_changed?: true
+    EventNotifier.should_receive(:event_updated).with(event, user).and_return(mail)
+    mail.should_receive :deliver
 
-  pending "should notify participants about changed time of event"
+    EventObserver.instance.after_update event
+  end
   pending "should notify participants about changed place of event"
   pending "should notify participants about cancelled/deleted event"
 end

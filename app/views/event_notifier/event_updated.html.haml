@@ -1,3 +1,7 @@
 %h2 Hey,
 
-%p== New date is #{@event.date}
+- if @event.time_changed?
+  %p== New time is #{@event.time.strftime("%H:%M")}
+
+- if @event.date_changed?
+  %p== New date is #{@event.date}

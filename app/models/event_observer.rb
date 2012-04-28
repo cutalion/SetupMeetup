@@ -6,7 +6,7 @@ class EventObserver < Mongoid::Observer
   end
 
   def after_update(event)
-    if event.date_changed?
+    if event.date_changed? || event.time_changed?
       event.participants.each do |user|
         EventNotifier.event_updated(event, user).deliver
       end
