@@ -34,3 +34,19 @@ h2 a {
   font-weight: normal;
   vertical-align: middle;
 }
+
+ul.participants {
+  list-style: none;
+  margin-left: 0;
+  max-width: 70%;
+
+  li {
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-right: 20px;
+
+    img {
+      margin-right: 0.5em;
+    }
+  }
+}

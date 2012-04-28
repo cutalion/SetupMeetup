@@ -19,4 +19,6 @@
 
     %ul.participants
       - resource.participants.each do |participant|
-        %li= participant.name
+        %li
+          = gravatar_for participant
+          = participant.name
