@@ -4,4 +4,11 @@ class EventObserver < Mongoid::Observer
       EventNotifier.new_event(event, user).deliver
     end
   end
+
+  def after_update(event)
+    return unless event.date_changed?
+    User.all.each do |user|
+      EventNotifier.time_changed(event, user).deliver
+    end
+  end
 end
