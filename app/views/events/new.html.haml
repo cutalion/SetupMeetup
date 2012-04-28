@@ -1,7 +1,6 @@
-= simple_form_for(resource, :html => {:class => 'form-horizontal' }) do |f|
-  = f.input :name
-  = f.input :date, as: :date
-  = f.input :time, as: :time
-  = f.input :description, as: :text, input_html: { rows: 4 }
-  .form-actions
-    = f.submit "Create Event", class: "btn btn-primary"
+
+.page-header
+  %h1 Create new event
+
+.row
+  = render 'form', resource: resource
