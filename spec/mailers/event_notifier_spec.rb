@@ -15,7 +15,7 @@ describe EventNotifier do
   describe "#event_updated" do
     let(:event) { Event.new description: "Huray!\nNew Meetup!" }
     let(:user)  { User.new email: "bob@example.com" }
-    subject { EventNotifier.event_updated(event, user) }
+    subject { EventNotifier.event_updated(event, user, event.changed) }
 
     its(:to)      { should == [user.email] }
     its(:subject) { should match /Event Information Changed/ }

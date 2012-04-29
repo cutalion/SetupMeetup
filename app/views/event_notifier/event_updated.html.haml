@@ -1,7 +1,7 @@
 %h2 Hey,
 
-- if @event.time_changed?
+- if @changed_attributes.include? "time"
   %p== New time is #{@event.time.strftime("%H:%M")}
 
-- if @event.date_changed?
+- if @changed_attributes.include? "date"
   %p== New date is #{@event.date}

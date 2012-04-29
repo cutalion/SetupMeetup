@@ -6,8 +6,9 @@ class EventNotifier < ActionMailer::Base
     mail(subject: "New Event", to: recipient.email)
   end
 
-  def event_updated(event, recipient)
+  def event_updated(event, recipient, changed_attributes)
     @event = event
+    @changed_attributes = changed_attributes
     mail(subject: "Event Information Changed", to: recipient.email)
   end
 end
