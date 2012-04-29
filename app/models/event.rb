@@ -27,4 +27,8 @@ class Event
   def owned_by?(user)
     owner == user
   end
+
+  def important_information_changed?
+    time_changed? || date_changed? || address_changed?
+  end
 end

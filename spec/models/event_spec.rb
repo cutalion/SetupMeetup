@@ -55,4 +55,22 @@ describe Event do
     event = FactoryGirl.create :event
     event.participants.should include event.owner
   end
+
+  describe "#important_information_changed?" do
+    let(:event) { Event.new }
+
+    specify { event.important_information_changed?.should be_false }
+    specify do
+      event.time = Time.now
+      event.important_information_changed?.should be_true
+    end
+    specify do
+      event.date = Date.today
+      event.important_information_changed?.should be_true
+    end
+    specify do
+      event.address = "New Address"
+      event.important_information_changed?.should be_true
+    end
+  end
 end
