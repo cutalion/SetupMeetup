@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe EventObserver do
   let(:user)  { stub(:user, email: "bob@example.com")  }
-  let(:event) { stub(:event).as_null_object }
+  let(:event) { stub(:event, time_changed?: false, date_changed?: false, address_changed?: false).as_null_object }
   let(:mail)  { stub(:mail)  }
 
   it "should notify all users about new event" do
@@ -30,7 +30,7 @@ describe EventObserver do
     end
 
     it "should not notify participants if date wasn't changed" do
-      event.stub participants: [user], date_changed?: false, time_changed?: false
+      event.stub participants: [user], date_changed?: false
       EventObserver.instance.after_update event
       EventNotifier.deliveries.should be_empty
     end
@@ -43,6 +43,13 @@ describe EventObserver do
 
     EventObserver.instance.after_update event
   end
-  pending "should notify participants about changed place of event"
+
+  it "should notify participants about changed address of event" do
+    event.stub participants: [user], address_changed?: true
+    EventNotifier.should_receive(:delay).and_return(EventNotifier)
+    EventNotifier.should_receive(:event_updated).with(event, user, event.changed).and_return(mail)
+
+    EventObserver.instance.after_update event
+  end
   pending "should notify participants about cancelled/deleted event"
 end

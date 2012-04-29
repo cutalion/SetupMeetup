@@ -5,3 +5,6 @@
 
 - if @changed_attributes.include? "date"
   %p== New date is #{@event.date}
+
+- if @changed_attributes.include? "address"
+  %p== New address is #{@event.address}

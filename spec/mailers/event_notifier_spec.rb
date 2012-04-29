@@ -21,20 +21,19 @@ describe EventNotifier do
     its(:subject) { should match /Event Information Changed/ }
 
     context "when date is changed" do
-      before do
-        event.stub date_changed?: true
-        event.date = Date.new(2012, 5, 5)
-      end
+      before { event.date = Date.new(2012, 5, 5) }
       its(:body) { should match "New date is 2012-05-05" }
     end
 
     context "when time of event changed" do
-      before do
-        event.stub time_changed?: true
-        event.time = Time.local 2012, 5, 3, 19, 00 
-      end
+      before { event.time = Time.local 2012, 5, 3, 19, 00 }
 
       its(:body) { should match /New time is 19:00/   }
+    end
+
+    context "when address of event changed" do
+      before { event.address = "McDonalds" }
+      its(:body) { should match /New address is McDonalds/ }
     end
   end
 end
