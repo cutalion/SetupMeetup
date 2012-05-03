@@ -7,14 +7,22 @@
       = link_to "Edit", [:edit, resource], class: 'btn btn-primary btn-large'
 
 .row
-  .span12
+  .span9
+
+    %p 
+      = l resource.date, format: :human
+      - if resource.time.present?
+        == / #{l resource.time, format: :time_only}
+
     %p= resource.description
+
     - if resource.address.present?
       %p== Address: #{resource.address}
     %p== Date: #{resource.date}
     - if resource.time.present?
       %p== Time: #{l resource.time, format: :time_only}
 
+  .span3
     %h2 Participants
 
     %ul.participants
