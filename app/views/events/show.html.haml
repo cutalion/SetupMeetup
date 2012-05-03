@@ -6,12 +6,17 @@
       = link_to "Join", [:join, resource], method: :put, class: 'btn btn-primary btn-large'
 
 .row
-  .span12
-    %p= resource.description
-    %p== Date: #{resource.date}
-    - if resource.time.present?
-      %p== Time: #{l resource.time, format: :time_only}
+  .span9
 
+    %p 
+      = l resource.date, format: :human
+      - if resource.time.present?
+        == / #{l resource.time, format: :time_only}
+
+    %p= resource.description
+    
+
+  .span3
     %h2 Participants
 
     %ul.participants
