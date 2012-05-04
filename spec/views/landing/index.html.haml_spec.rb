@@ -14,7 +14,7 @@ describe "landing/index" do
     end
   end
 
-  context "when there are many events", pending: "Spin bug" do
+  context "when there are many events" do
     it "should display all of them" do
       view.stub(events: [ stub(name: "event 1", date: Time.now),
                           stub(name: "event 2", date: Time.now + 1.day) ])
@@ -25,7 +25,7 @@ describe "landing/index" do
     end
   end
 
-  context "when there is a logged in user", pending: "Spin bug" do
+  context "when there is a logged in user" do
     it "should show 'Create Event' button" do
       view.stub user_signed_in?: true
       render
