@@ -102,4 +102,8 @@ class User
   def participated?(event)
     event.participants.include? self
   end
+
+  def remember_me
+    true
+  end
 end
