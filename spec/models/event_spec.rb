@@ -73,4 +73,24 @@ describe Event do
       event.important_information_changed?.should be_true
     end
   end
+
+  describe "#owned_by?" do
+    let(:event) { Event.new }
+    let(:owner) { stub }
+    let(:user)  { stub }
+    before { event.stub owner: owner }
+
+    specify { event.owned_by?(owner).should be_true }
+    specify { event.owned_by?(user).should be_false }
+
+    context "nil" do
+      specify "returns false if owner isn't nil" do
+        event.owned_by?(nil).should be_false
+      end
+      specify "returns false if owner is nil" do
+        event.stub owner: nil
+        event.owned_by?(nil).should be_false
+      end
+    end
+  end
 end

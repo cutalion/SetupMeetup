@@ -25,6 +25,7 @@ class Event
   end
 
   def owned_by?(user)
+    return false if user.nil?
     owner == user
   end
 
