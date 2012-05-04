@@ -42,11 +42,15 @@ ul.participants {
 
   li {
     display: inline-block;
-    margin-bottom: 20px;
-    margin-right: 20px;
-
+    margin-bottom: 10px;
     img {
       margin-right: 0.5em;
+      width: 32px;
+      height: 32px;
     }
   }
+}
+
+.block_heading {
+  margin: 1em 0;
 }
