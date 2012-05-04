@@ -1,4 +1,13 @@
 .page-header
+<<<<<<< HEAD
+  .pull-right
+    - if user_signed_in? and not current_user.participated?(resource)
+      = link_to "Join", [:join, resource], method: :put, class: 'btn btn-primary'
+    - if resource.owned_by?(current_user)
+      = link_to "Edit", [:edit, resource], class: 'btn btn-primary'
+  %h1
+    = title resource.name
+=======
   - if user_signed_in? and not current_user.participated?(resource)
     .pull-right
       = link_to "Join", [:join, resource], method: :put, class: 'btn btn-primary'
@@ -6,6 +15,7 @@
     = link_to "Edit", [:edit, resource], class: 'btn btn-primary'
   %h1
     = resource.name
+>>>>>>> moved meetup join/edit buttons to the right
 
 .row
   .span12
