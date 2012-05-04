@@ -1,9 +1,9 @@
 .page-header
-  - if user_signed_in? and not current_user.participated?(resource)
-    .pull-right
+  .pull-right
+    - if user_signed_in? and not current_user.participated?(resource)
       = link_to "Join", [:join, resource], method: :put, class: 'btn btn-primary'
-  - if resource.owned_by?(current_user)
-    = link_to "Edit", [:edit, resource], class: 'btn btn-primary'
+    - if resource.owned_by?(current_user)
+      = link_to "Edit", [:edit, resource], class: 'btn btn-primary'
   %h1
     = resource.name
 
