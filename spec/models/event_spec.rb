@@ -37,15 +37,60 @@ describe Event do
 
     it "should add user to the list of participants" do
       event.add_participant user
-      event.participants.should include user
-      user.events.should include event
+      event.participant_ids.should include user.id
+      user.event_ids.should include event.id
+    end
+
+    it "should not add participant twice" do
+      event.add_participant user
+      event.add_participant user
+      event.participant_ids == [user.id]
+      user.event_ids.should == [event.id]
     end
   end
 
   specify "owner should be participant of the event also" do
-    enable_observer(EventOwnerObserver).for(Event)
+    Mongoid.observers.enable(:all)
 
     event = FactoryGirl.create :event
     event.participants.should include event.owner
+  end
+
+  describe "#important_information_changed?" do
+    let(:event) { Event.new }
+
+    specify { event.important_information_changed?.should be_false }
+    specify do
+      event.time = Time.now
+      event.important_information_changed?.should be_true
+    end
+    specify do
+      event.date = Date.today
+      event.important_information_changed?.should be_true
+    end
+    specify do
+      event.address = "New Address"
+      event.important_information_changed?.should be_true
+    end
+  end
+
+  describe "#owned_by?" do
+    let(:event) { Event.new }
+    let(:owner) { stub }
+    let(:user)  { stub }
+    before { event.stub owner: owner }
+
+    specify { event.owned_by?(owner).should be_true }
+    specify { event.owned_by?(user).should be_false }
+
+    context "nil" do
+      specify "returns false if owner isn't nil" do
+        event.owned_by?(nil).should be_false
+      end
+      specify "returns false if owner is nil" do
+        event.stub owner: nil
+        event.owned_by?(nil).should be_false
+      end
+    end
   end
 end

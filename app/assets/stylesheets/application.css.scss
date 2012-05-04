@@ -15,3 +15,42 @@
 select.date, select.time {
   width: 6em;
 }
+
+.welcome {
+  padding: 4em 0 4em;
+  margin-bottom: 2em;
+  text-align: center;
+  background-color: #F4F4F4;
+  border-radius: 8px;
+}
+
+.footer {
+  margin-top: 45px;
+  padding: 35px 0 36px;
+  border-top: 1px solid #E5E5E5;
+}
+
+h2 a {
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+ul.participants {
+  list-style: none;
+  margin-left: 0;
+  max-width: 70%;
+
+  li {
+    display: inline-block;
+    margin-bottom: 10px;
+    img {
+      margin-right: 0.5em;
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+.block_heading {
+  margin: 1em 0;
+}

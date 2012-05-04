@@ -1,6 +1,6 @@
-RSpec::Matchers.define :require_authentication_for do |action|
+RSpec::Matchers.define :require_authentication_for do |action, params|
   match do |controller|
-    send verb_for(action), action
+    send verb_for(action), action, params
     response.redirect_url =~ /sign_in/
   end
 
@@ -14,6 +14,7 @@ RSpec::Matchers.define :require_authentication_for do |action|
 
   def verb_for(action)
     {
+      show:     :get,
       new:      :get,
       edit:     :get,
       create:   :post,

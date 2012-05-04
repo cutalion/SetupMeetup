@@ -98,4 +98,12 @@ class User
   def email_required?
     !@skip_email_presence_validation
   end
+
+  def participated?(event)
+    event.participants.include? self
+  end
+
+  def remember_me
+    true
+  end
 end

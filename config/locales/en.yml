@@ -3,6 +3,9 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      human: "%b %d, %A"
   time:
     formats:
       time_only: "%H:%M"
