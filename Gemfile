@@ -31,6 +31,8 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem "twitter-bootstrap-rails"
+  gem 'haml_coffee_assets'
+  gem 'execjs'
 end
 
 group :test do
@@ -42,7 +44,7 @@ group :test do
   gem "spin"
   gem "guard"
   gem "guard-rspec"
-  gem "guard-spin" 
+  gem "guard-spin"
   gem "factory_girl_rails"
   gem 'database_cleaner'
   gem 'rb-inotify', :require => false

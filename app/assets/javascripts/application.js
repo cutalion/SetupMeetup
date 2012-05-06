@@ -31,3 +31,5 @@
 //= require_tree .//collections
 //= require_tree .//views
 //= require_tree .//routers
+//= require hamlcoffee
+//= require_tree ../templates
