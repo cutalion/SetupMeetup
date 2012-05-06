@@ -4,7 +4,7 @@ window.SetupMeetup =
   Views: {}
   Routers: {}
   init: ->
-    new SetupMeetup.Routers.Events()
+    window.router = new SetupMeetup.Routers.Events()
     Backbone.history.start()
     console.log('inited')
 

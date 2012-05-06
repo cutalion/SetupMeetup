@@ -23,9 +23,7 @@
 //= require_tree ./routers
 //= require underscore
 //= require backbone
-//
 //= require .//setup_meetup
-//
 //= require_tree ../templates/
 //= require_tree .//models
 //= require_tree .//collections
@@ -33,3 +31,5 @@
 //= require_tree .//routers
 //= require hamlcoffee
 //= require_tree ../templates
+//= require backbone_forms/backbone-forms
+//= require backbone_forms/templates/bootstrap

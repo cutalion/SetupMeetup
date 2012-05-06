@@ -1,0 +1,15 @@
+- if @events.length > 0
+  .page-header
+    -#%a{ href: "#{SetupMeetup.Routers.Events.new_events_path()}" , class: "btn btn-primary pull-right"  } Create event
+    %h1 Events JS
+
+  .row
+    - for event in @events.models
+      .span2
+        = event.get('date')
+      .span10
+        -#= link_to event.name, event_path(event)
+        = event.get('name')
+
+- else
+  %h2 There are no events yet.

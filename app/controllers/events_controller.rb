@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   inherit_resources
   before_filter :authenticate_user!, except: :show
 
+  respond_to :json, :html
+
   def create
     @event = current_user.owned_events.build params[:event]
     create!
