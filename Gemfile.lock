@@ -145,6 +145,7 @@ GEM
       rspec (~> 2)
     multi_json (1.2.0)
     multipart-post (1.1.5)
+    newrelic_rpm (3.3.4.1)
     nokogiri (1.5.2)
     oauth (0.4.5)
     oauth2 (0.5.2)
@@ -288,6 +289,7 @@ DEPENDENCIES
   libnotify
   mongoid (~> 2.4)
   mongoid-rspec
+  newrelic_rpm
   omniauth-facebook
   omniauth-openid
   omniauth-twitter
