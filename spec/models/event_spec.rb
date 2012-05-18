@@ -31,6 +31,40 @@ describe Event do
     end
   end
 
+  describe ".events_within_a_week" do
+    it "should return events, which start within 7 days" do
+      future_event = FactoryGirl.create :event, date: 7.days.from_now
+      Event.events_within_a_week.should == [future_event]
+    end
+
+    it "should not return events, which start within 6 days" do
+      future_event = FactoryGirl.create :event, date: 6.days.from_now
+      Event.events_within_a_week.should == []
+    end
+
+    it "should not return events, which start within 8 days" do
+      future_event = FactoryGirl.create :event, date: 8.days.from_now
+      Event.events_within_a_week.should == []
+    end
+  end
+
+  describe ".today_events" do
+    it "should return events, which start today" do
+      future_event = FactoryGirl.create :event, date: Date.today
+      Event.today_events.should == [future_event]
+    end
+
+    it "should not return events, which start yesterday" do
+      future_event = FactoryGirl.create :event, date: 1.day.ago
+      Event.today_events.should == []
+    end
+
+    it "should not return events, which start within 1 day" do
+      future_event = FactoryGirl.create :event, date: 1.day.since
+      Event.today_events.should == []
+    end
+  end
+
   describe "#add_participant" do
     let(:event) { Event.new }
     let(:user)  { User.new  }

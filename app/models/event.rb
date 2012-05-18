@@ -18,6 +18,8 @@ class Event
   attr_accessible :name, :description, :address, :date, :time
 
   scope :future_events, where(:date.gte => Date.today)
+  scope :events_within_a_week, where(:date => 1.week.since)
+  scope :today_events, where(:date => Date.today)
 
   def add_participant(user)
     return participants if participants.include?(user)

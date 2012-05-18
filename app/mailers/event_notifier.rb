@@ -11,4 +11,9 @@ class EventNotifier < ActionMailer::Base
     @changed_attributes = changed_attributes
     mail(subject: "Event Information Changed", to: recipient.email)
   end
+
+  def week_notification(event, recipient)
+    @event = event
+    mail(subject: "Reminder about #{event.name}", to: recipient.email)
+  end
 end

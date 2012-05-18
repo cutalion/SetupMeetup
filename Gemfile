@@ -49,6 +49,7 @@ group :test do
   gem 'rb-fchange', :require => false
   gem 'libnotify'
   gem 'launchy', :require => false
+  gem 'timecop'
 end
 
 group :development do

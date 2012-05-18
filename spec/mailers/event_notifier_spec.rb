@@ -36,4 +36,13 @@ describe EventNotifier do
       its(:body) { should match /New address is McDonalds/ }
     end
   end
+
+  describe "#week_notification" do
+    let(:event) { Event.new description: "Huray!\nNew Meetup!" }
+    subject { EventNotifier.week_notification(event, user) }
+
+    its(:to)      { should == ["bob@example.com"] }
+    its(:subject) { should match /Reminder/ }
+    its(:body)    { should match event.description }
+  end
 end
