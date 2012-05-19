@@ -5,7 +5,7 @@ gem 'rails', '3.2.3'
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
 
-gem "thin"
+gem "unicorn"
 
 gem "haml-rails"
 gem 'jquery-rails'
@@ -18,6 +18,9 @@ gem "simple_form"
 gem "delayed_job"
 gem "delayed_job_mongoid"
 gem "newrelic_rpm"
+
+gem "capistrano"
+gem "capistrano-ext"
 
 # Gems used only for assets and not required
 # in production environments by default.
