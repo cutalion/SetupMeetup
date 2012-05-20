@@ -19,6 +19,7 @@ gem "delayed_job"
 gem "delayed_job_mongoid"
 gem "newrelic_rpm"
 gem "rails_config"
+gem "daemons"
 
 gem "capistrano"
 gem "capistrano-ext"
