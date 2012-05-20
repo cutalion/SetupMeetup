@@ -19,49 +19,49 @@ describe Event do
   describe ".future_events" do
     it "should return events, that start in the future" do
       future_event = FactoryGirl.create :event, date: 1.day.from_now
-      Event.future_events.should == [future_event]
+      Event.future_events.to_a.should == [future_event]
     end
     it "should return events, that start today" do
       today_event = FactoryGirl.create :event, date: Date.today
-      Event.future_events.should == [today_event]
+      Event.future_events.to_a.should == [today_event]
     end
     it "should not return events, that were in the past" do
       past_event = FactoryGirl.create :event, date: 1.day.ago
-      Event.future_events.should == []
+      Event.future_events.to_a.should == []
     end
   end
 
   describe ".events_within_a_week" do
     it "should return events, which start within 7 days" do
       future_event = FactoryGirl.create :event, date: 7.days.from_now
-      Event.events_within_a_week.should == [future_event]
+      Event.events_within_a_week.to_a.should == [future_event]
     end
 
     it "should not return events, which start within 6 days" do
       future_event = FactoryGirl.create :event, date: 6.days.from_now
-      Event.events_within_a_week.should == []
+      Event.events_within_a_week.to_a.should == []
     end
 
     it "should not return events, which start within 8 days" do
       future_event = FactoryGirl.create :event, date: 8.days.from_now
-      Event.events_within_a_week.should == []
+      Event.events_within_a_week.to_a.should == []
     end
   end
 
   describe ".today_events" do
     it "should return events, which start today" do
       future_event = FactoryGirl.create :event, date: Date.today
-      Event.today_events.should == [future_event]
+      Event.today_events.to_a.should == [future_event]
     end
 
     it "should not return events, which start yesterday" do
       future_event = FactoryGirl.create :event, date: 1.day.ago
-      Event.today_events.should == []
+      Event.today_events.to_a.should == []
     end
 
     it "should not return events, which start within 1 day" do
       future_event = FactoryGirl.create :event, date: 1.day.since
-      Event.today_events.should == []
+      Event.today_events.to_a.should == []
     end
   end
 

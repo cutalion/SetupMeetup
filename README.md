@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/cutalion/SetupMeetup.png)](http://travis-ci.org/cutalion/SetupMeetup)
+
 # SetupMeetup TODO/Thoughts/Planning
 
 Everyone is welcome to append to this file.
