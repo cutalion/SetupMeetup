@@ -18,6 +18,7 @@ gem "simple_form"
 gem "delayed_job"
 gem "delayed_job_mongoid"
 gem "newrelic_rpm"
+gem "rails_config"
 
 gem "capistrano"
 gem "capistrano-ext"
