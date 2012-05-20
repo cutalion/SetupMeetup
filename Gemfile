@@ -20,7 +20,6 @@ gem "omniauth-openid"
 gem "omniauth-twitter"
 gem "rails_config"
 gem "simple_form"
-gem "tlsmail"
 
 gem "capistrano"
 gem "capistrano-ext"
