@@ -12,6 +12,7 @@ load "config/recipes/mongoid"
 # load "config/recipes/nodejs"
 load "config/recipes/rbenv"
 load "config/recipes/check"
+load "config/recipes/settings"
 
 server "91.218.28.28", :web, :app, :db, primary: true
 
