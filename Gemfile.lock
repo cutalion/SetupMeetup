@@ -320,6 +320,7 @@ DEPENDENCIES
   omniauth-twitter
   rails (= 3.2.3)
   rails_config
+  rake
   rb-fchange
   rb-fsevent
   rb-inotify

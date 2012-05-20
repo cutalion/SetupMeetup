@@ -62,5 +62,6 @@ group :development do
 end
 
 group :test, :development do
+  gem 'rake'
   gem 'ffaker'
 end
