@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Event do
   it { should validate_presence_of :name  }
-  it { should validate_presence_of :date  }
+  it { should validate_presence_of :time  }
   it { should validate_presence_of :owner }
 
   it { should belong_to :owner }
@@ -17,50 +17,53 @@ describe Event do
   end
 
   describe ".future_events" do
-    it "should return events, that start in the future" do
-      future_event = FactoryGirl.create :event, date: 1.day.from_now
-      Event.future_events.to_a.should == [future_event]
+    before { Timecop.freeze Time.zone.local(2012, 01, 15, 13, 00) }
+    after  { Timecop.return }
+
+    it "should return events, which start in the future" do
+      future_event = FactoryGirl.create :event, time: 1.second.from_now
+      Event.future_events.should == [future_event]
     end
-    it "should return events, that start today" do
-      today_event = FactoryGirl.create :event, date: Date.today
-      Event.future_events.to_a.should == [today_event]
+    it "should not return events, which start right now" do
+      future_event = FactoryGirl.create :event, time: Time.zone.now
+      Event.future_events.should == [future_event]
     end
-    it "should not return events, that were in the past" do
-      past_event = FactoryGirl.create :event, date: 1.day.ago
-      Event.future_events.to_a.should == []
+    it "should not return events, which were in the past" do
+      past_event = FactoryGirl.create :event, time: 1.second.ago
+      Event.future_events.should == []
     end
   end
 
   describe ".events_within_a_week" do
     it "should return events, which start within 7 days" do
-      future_event = FactoryGirl.create :event, date: 7.days.from_now
+      future_event = FactoryGirl.create :event, time: 7.days.from_now
       Event.events_within_a_week.to_a.should == [future_event]
     end
 
     it "should not return events, which start within 6 days" do
-      future_event = FactoryGirl.create :event, date: 6.days.from_now
+      future_event = FactoryGirl.create :event, time: 6.days.from_now
       Event.events_within_a_week.to_a.should == []
     end
 
     it "should not return events, which start within 8 days" do
-      future_event = FactoryGirl.create :event, date: 8.days.from_now
+      future_event = FactoryGirl.create :event, time: 8.days.from_now
       Event.events_within_a_week.to_a.should == []
     end
   end
 
   describe ".today_events" do
     it "should return events, which start today" do
-      future_event = FactoryGirl.create :event, date: Date.today
+      future_event = FactoryGirl.create :event, time: Date.today
       Event.today_events.to_a.should == [future_event]
     end
 
     it "should not return events, which start yesterday" do
-      future_event = FactoryGirl.create :event, date: 1.day.ago
+      future_event = FactoryGirl.create :event, time: 1.day.ago
       Event.today_events.to_a.should == []
     end
 
     it "should not return events, which start within 1 day" do
-      future_event = FactoryGirl.create :event, date: 1.day.since
+      future_event = FactoryGirl.create :event, time: 1.day.since
       Event.today_events.to_a.should == []
     end
   end
@@ -96,10 +99,6 @@ describe Event do
     specify { event.important_information_changed?.should be_false }
     specify do
       event.time = Time.now
-      event.important_information_changed?.should be_true
-    end
-    specify do
-      event.date = Date.today
       event.important_information_changed?.should be_true
     end
     specify do

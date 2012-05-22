@@ -10,11 +10,7 @@
 .row
   .span12
 
-    %p 
-      = l resource.date, format: :human
-      - if resource.time.present?
-        = '/'
-        = l resource.time, format: :time_only
+    %p= l resource.time, format: :human
 
     %p= resource.description
 

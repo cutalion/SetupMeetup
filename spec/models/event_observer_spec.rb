@@ -14,7 +14,7 @@ describe EventObserver do
     EventObserver.instance.after_create event
   end
 
-  describe "notification about changed date" do
+  describe "notification about changed time" do
     it "should notify participants if important info has been changed" do
       event.stub participants: [user], important_information_changed?: true
       EventNotifier.should_receive(:delay).and_return(EventNotifier)
@@ -30,7 +30,7 @@ describe EventObserver do
     end
 
     it "actually calls EventNotifier#event_updated" do
-      event.stub participants: [user], important_information_changed?: true
+      event.stub participants: [user], important_information_changed?: true, time: Time.zone.now, date: Date.today
       EventObserver.instance.after_update event
       EventNotifier.deliveries.last.subject.should match "Changed"
     end

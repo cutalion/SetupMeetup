@@ -1,7 +1,9 @@
 %h2 Hey,
 
 - if @changed_attributes.include? "time"
-  %p== New time is #{@event.time.strftime("%H:%M")}
+  %p
+    New time is
+    = l @event.time, format: :human
 
 - if @changed_attributes.include? "date"
   %p== New date is #{@event.date}

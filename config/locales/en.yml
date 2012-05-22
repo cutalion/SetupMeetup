@@ -9,3 +9,4 @@ en:
   time:
     formats:
       time_only: "%H:%M"
+      human: "%b %d, %A / %H:%M"

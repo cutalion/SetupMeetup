@@ -20,15 +20,10 @@ describe EventNotifier do
     its(:to)      { should == [user.email] }
     its(:subject) { should match /Event Information Changed/ }
 
-    context "when date is changed" do
-      before { event.date = Date.new(2012, 5, 5) }
-      its(:body) { should match "New date is 2012-05-05" }
-    end
-
     context "when time of event changed" do
       before { event.time = Time.local 2012, 5, 3, 19, 00 }
 
-      its(:body) { should match /New time is 19:00/   }
+      its(:body) { should match /New time is\s*May 03, Thursday\s*\/\s*19:00/   }
     end
 
     context "when address of event changed" do

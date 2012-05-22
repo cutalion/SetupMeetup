@@ -14,8 +14,7 @@ FactoryGirl.define do
 
   factory :event do
     name        "Rails Meetup"
-    date        1.day.from_now
-    time        "18:30"
+    time        Time.zone.local(2012, 02, 28, 18, 30, 00)
     description "Next Meetup!"
     owner { FactoryGirl.create :user }
   end
