@@ -1,5 +1,6 @@
 class EventNotifier < ActionMailer::Base
   default from: "info@setupmeetup.com"
+  helper :application
 
   def event_created(event, recipient)
     @event = event

@@ -12,7 +12,7 @@
 
     %p= l resource.time, format: :human
 
-    %p= resource.description
+    = markdown resource.description
 
     - if resource.address.present?
       %p== Address: #{resource.address}
