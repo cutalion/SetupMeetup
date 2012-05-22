@@ -60,6 +60,7 @@ end
 group :development do
   gem 'debugger'
   gem 'letter_opener'
+  gem 'thin'
 end
 
 group :test, :development do
