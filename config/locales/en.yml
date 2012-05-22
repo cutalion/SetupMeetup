@@ -5,8 +5,8 @@ en:
   hello: "Hello world"
   date:
     formats:
-      human: "%b %d, %A"
+      human: "%B %d, %A"
   time:
     formats:
       time_only: "%H:%M"
-      human: "%b %d, %A / %H:%M"
+      human: "%B %d, %A / %H:%M"

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe EventObserver do
-  let(:user)  { stub(:user, email: "bob@example.com")  }
+  let(:user)  { stub(:user, email: "bob@example.com", name: "Bob")  }
   let(:event) { stub(:event, important_information_changed?: false).as_null_object }
   let(:mail)  { stub(:mail)  }
 

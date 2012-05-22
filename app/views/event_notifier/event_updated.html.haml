@@ -1,12 +1,16 @@
-%h2 Hey,
+%h2== Hi #{@recipient.name},
 
-- if @changed_attributes.include? "time"
-  %p
-    New time is
-    = l @event.time, format: :human
+%p Meetup information has been changed.
 
-- if @changed_attributes.include? "date"
-  %p== New date is #{@event.date}
+%p
+  = link_to "\"#{@event.name}\"", event_url(@event)
+  %br/
+  == will be help on #{l @event.date, format: :human} at #{l @event.time, format: :time_only}
+  - if @event.address.present?
+    %br/
+    == at #{@event.address}
 
-- if @changed_attributes.include? "address"
-  %p== New address is #{@event.address}
+- if @event.description.present?
+  %h3 Meetup description
+
+  %p= @event.description

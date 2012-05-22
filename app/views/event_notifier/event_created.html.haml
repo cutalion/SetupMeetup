@@ -6,10 +6,10 @@
   == #{@event.owner_name} invites you to 
   = link_to "\"#{@event.name}\"", event_url(@event)
   %br/
-  == on #{l @event.time, format: :human}
+  == on #{l @event.date, format: :human} at #{l @event.time, format: :time_only}
   - if @event.address.present?
     %br/
-    == Address: #{@event.address}
+    == at #{@event.address}
 
 
 - if @event.description.present?
