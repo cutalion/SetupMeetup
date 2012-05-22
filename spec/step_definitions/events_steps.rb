@@ -20,6 +20,7 @@ end
 
 step "I should see new event" do
   last_event = Event.last
+  last_event.time.should == Time.zone.local(2012, 05, 05, 18, 30)
   page.should have_content last_event.name
   page.should have_content last_event.description
   page.should have_content last_event.address
