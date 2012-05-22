@@ -20,6 +20,8 @@ class Event
   scope :future_events,        -> { where(:time.gte => Time.zone.now) }
   scope :events_within_a_week, -> { where(:time => 1.week.since) }
 
+  delegate :name, to: :owner, prefix: true, allow_nil: true
+
   def add_participant(user)
     return participants if participants.include?(user)
     participants << user

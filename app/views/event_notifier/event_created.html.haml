@@ -1,5 +1,18 @@
-%h2 Hey man, 
+%h2== Hi #{@recipient.name},
 
-%p New meetup is coming soon
+%p New meetup is coming soon.
 
-%p= @event.description
+%p
+  == #{@event.owner_name} invites you to 
+  = link_to "\"#{@event.name}\"", event_url(@event)
+  %br/
+  == on #{l @event.time, format: :human}
+  - if @event.address.present?
+    %br/
+    == Address: #{@event.address}
+
+
+- if @event.description.present?
+  %h3 Meetup description
+
+  %p= @event.description

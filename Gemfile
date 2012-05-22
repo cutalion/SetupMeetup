@@ -59,6 +59,7 @@ end
 
 group :development do
   gem 'debugger'
+  gem 'letter_opener'
 end
 
 group :test, :development do

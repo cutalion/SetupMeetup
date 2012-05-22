@@ -3,7 +3,8 @@ class EventNotifier < ActionMailer::Base
 
   def event_created(event, recipient)
     @event = event
-    mail(subject: "New Event", to: recipient.email)
+    @recipient = recipient
+    mail(subject: "New Meetup", to: recipient.email)
   end
 
   def event_updated(event, recipient, changed_attributes)

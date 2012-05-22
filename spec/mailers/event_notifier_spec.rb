@@ -4,11 +4,11 @@ describe EventNotifier do
   let(:user)  { User.new email: "bob@example.com" }
 
   describe "#event_created" do
-    let(:event) { Event.new description: "Huray!\nNew Meetup!" }
+    let(:event) { FactoryGirl.create :event, description: "Huray!\nNew Meetup!" }
     subject { EventNotifier.event_created(event, user) }
 
     its(:to)      { should == ["bob@example.com"] }
-    its(:subject) { should match /New Event/ }
+    its(:subject) { should match /New Meetup/ }
     its(:body)    { should match event.description }
   end
 

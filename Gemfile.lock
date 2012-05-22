@@ -137,6 +137,8 @@ GEM
     less-rails (2.2.0)
       actionpack (>= 3.1)
       less (~> 2.1.0)
+    letter_opener (0.0.2)
+      launchy
     libnotify (0.7.2)
     libv8 (3.3.10.4)
     mail (2.4.4)
@@ -311,6 +313,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   launchy
+  letter_opener
   libnotify
   mongoid (~> 2.4)
   mongoid-rspec
