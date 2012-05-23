@@ -1,8 +1,9 @@
-= simple_form_for(resource, :html => {:class => 'form-horizontal' }) do |f|
+= simple_form_for(resource, html: { class: 'form-horizontal' }) do |f|
   = f.input :name,  input_html: { class: 'span6' }
   = f.input :time, as: :date, label: 'Date'
   = f.input :time, as: :time, ignore_date: true
   = f.input :address
   = f.input :description, as: :text, input_html: { rows: 4, class: 'span6' }
   .form-actions
-    = f.submit (resource.new_record? ? "Create Event" : "Edit Event"), class: "btn btn-primary"
+    - submit_text = resource.new_record? ? "Create Event" : "Edit Event"
+    = f.submit submit_text, class: "btn btn-primary"
