@@ -35,6 +35,9 @@ describe Event do
   end
 
   describe ".events_within_a_week" do
+    before { Timecop.freeze Time.zone.local(2012, 01, 15, 13, 00) }
+    after  { Timecop.return }
+
     it "should return events, which start within 7 days" do
       future_event = FactoryGirl.create :event, time: 7.days.from_now
       Event.events_within_a_week.to_a.should == [future_event]
@@ -52,18 +55,21 @@ describe Event do
   end
 
   describe ".today_events" do
+    before { Timecop.freeze Time.zone.local(2012, 01, 15, 13, 00) }
+    after  { Timecop.return }
+
     it "should return events, which start today" do
-      future_event = FactoryGirl.create :event, time: Date.today
+      future_event = FactoryGirl.create :event, time: Time.zone.now
       Event.today_events.to_a.should == [future_event]
     end
 
     it "should not return events, which start yesterday" do
-      future_event = FactoryGirl.create :event, time: 1.day.ago
+      FactoryGirl.create :event, time: 1.day.ago
       Event.today_events.to_a.should == []
     end
 
     it "should not return events, which start within 1 day" do
-      future_event = FactoryGirl.create :event, time: 1.day.since
+      FactoryGirl.create :event, time: 1.day.from_now
       Event.today_events.to_a.should == []
     end
   end
