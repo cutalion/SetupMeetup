@@ -146,6 +146,8 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta-tags (1.2.6)
+      actionpack
     mime-types (1.18)
     mongo (1.6.2)
       bson (~> 1.6.2)
@@ -326,6 +328,7 @@ DEPENDENCIES
   launchy
   letter_opener
   libnotify
+  meta-tags
   mongoid (~> 2.4)
   mongoid-rspec
   newrelic_rpm

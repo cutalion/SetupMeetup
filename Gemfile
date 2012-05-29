@@ -7,6 +7,8 @@ gem "bson_ext", "~> 1.5"
 
 gem "unicorn"
 
+gem "capistrano"
+gem "capistrano-ext"
 gem "daemons"
 gem "delayed_job"
 gem "delayed_job_mongoid"
@@ -14,16 +16,14 @@ gem "devise"
 gem "haml-rails"
 gem "inherited_resources"
 gem 'jquery-rails'
+gem 'meta-tags', :require => 'meta_tags'
 gem "newrelic_rpm"
 gem "omniauth-facebook"
 gem "omniauth-openid"
 gem "omniauth-twitter"
 gem "rails_config"
-gem "simple_form"
 gem "redcarpet"
-
-gem "capistrano"
-gem "capistrano-ext"
+gem "simple_form"
 
 # Gems used only for assets and not required
 # in production environments by default.
