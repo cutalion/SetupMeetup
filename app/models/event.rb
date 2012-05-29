@@ -17,7 +17,8 @@ class Event
   attr_accessible :name, :description, :address, :time
 
   scope :today_events,         -> { where(:time => Date.today.beginning_of_day..Date.today.end_of_day) }
-  scope :future_events,        -> { where(:time.gte => Time.zone.now) }
+  scope :future_events,        -> { where(:time.gte => Time.zone.now).asc(:time) }
+  scope :past_events,          -> { where(:time.lt => Time.zone.now).desc(:time) }
   scope :events_within_a_week, -> { where(:time => 1.week.since) }
 
   delegate :name, to: :owner, prefix: true, allow_nil: true

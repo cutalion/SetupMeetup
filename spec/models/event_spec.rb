@@ -24,13 +24,41 @@ describe Event do
       future_event = FactoryGirl.create :event, time: 1.second.from_now
       Event.future_events.should == [future_event]
     end
-    it "should not return events, which start right now" do
+    it "should return events, which start right now" do
       future_event = FactoryGirl.create :event, time: Time.zone.now
       Event.future_events.should == [future_event]
     end
     it "should not return events, which were in the past" do
       past_event = FactoryGirl.create :event, time: 1.second.ago
       Event.future_events.should == []
+    end
+    it "should return closest events first" do
+      last_event = FactoryGirl.create :event, time: 2.seconds.from_now
+      first_event = FactoryGirl.create :event, time: 1.second.from_now
+      Event.future_events.to_a.should == [first_event, last_event]
+    end
+  end
+
+  describe ".past_events" do
+    before { Timecop.freeze Time.zone.local(2012, 01, 15, 13, 00) }
+    after  { Timecop.return }
+
+    it "should return events, which start in the past" do
+      past_event = FactoryGirl.create :event, time: 1.second.ago
+      Event.past_events.should == [past_event]
+    end
+    it "should not return events, which start right now" do
+      past_event = FactoryGirl.create :event, time: Time.zone.now
+      Event.past_events.should == []
+    end
+    it "should not return past events" do
+      past_event = FactoryGirl.create :event, time: 1.second.from_now
+      Event.past_events.should == []
+    end
+    it "should return closest events first" do
+      older_event = FactoryGirl.create :event, time: 2.seconds.ago
+      newer_event = FactoryGirl.create :event, time: 1.second.ago
+      Event.past_events.to_a.should == [newer_event, older_event]
     end
   end
 
