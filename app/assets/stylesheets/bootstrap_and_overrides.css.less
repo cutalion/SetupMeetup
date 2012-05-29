@@ -28,11 +28,18 @@ body { padding-top: 60px; }
 // Example:
 // @linkColor: #ff0000;
 
+@baseFontSize: 16px;
+@baseLineHeight: 25px;
+
+.navbar .nav * {
+  font-size: 13px;
+  line-height: 19px;
+}
+
 .navbar .nav > li > span {
     color: #999999;
     float: none;
     display: block;
-    line-height: 19px;
     padding: 10px 10px 11px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
