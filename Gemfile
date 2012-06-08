@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.4'
+gem 'rails', '3.2.5'
 
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
