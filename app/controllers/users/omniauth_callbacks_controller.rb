@@ -16,15 +16,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   protected
 
   def oauth_callback
-    @user = User.find_or_create_with_oauth(request.env["omniauth.auth"], current_user)
-    provider = request.env['omniauth.auth'].provider
-
-    if @user.persisted?
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => provider.capitalize
-      sign_in_and_redirect @user, :event => :authentication
+    if current_user
+      current_user.connect_with_provider! request.env["omniauth.auth"]
+      redirect_to root_url
     else
-      session["devise.oauth_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
+      @user = User.find_or_create_with_oauth(request.env["omniauth.auth"], current_user)
+      provider = request.env['omniauth.auth'].provider
+
+      if @user.persisted?
+        flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => provider.capitalize
+        sign_in_and_redirect @user, :event => :authentication
+      else
+        session["devise.oauth_data"] = request.env["omniauth.auth"]
+        redirect_to new_user_registration_url
+      end
     end
   end
 end
