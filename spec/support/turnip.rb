@@ -1,5 +1,2 @@
 require "turnip/capybara"
-RSpec.configure do |config|
-  Turnip::Config.step_dirs = 'spec/step_definitions'
-  Turnip::StepLoader.load_steps
-end
+Dir.glob("spec/step_definitions/**/*steps.rb") { |f| load f, true }
