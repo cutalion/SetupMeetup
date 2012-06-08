@@ -2,24 +2,35 @@ require 'spec_helper'
 
 describe "landing/index" do
   before do
-    view.stub events: []
+    view.stub future_events: []
+    view.stub past_events: []
     view.stub user_signed_in?: false
   end
 
-  context "when there are no events" do
+  context "when there are no future events" do
     it "should display 'No events yet'" do
-      view.stub(events: [])
+      view.stub(future_events: [])
       render
-      rendered.should have_content "There are no events yet"
+      rendered.should have_content "There are no future events yet"
     end
   end
 
-  context "when there are many events" do
+  context "when there are many future events" do
     it "should display all of them" do
-      view.stub(events: [ stub(name: "event 1", date: Time.now),
+      view.stub(future_events: [ stub(name: "event 1", date: Time.now),
                           stub(name: "event 2", date: Time.now + 1.day) ])
       render
-      rendered.should_not have_content "There are no events yet"
+      rendered.should_not have_content "There are no future events yet"
+      rendered.should have_content "event 1"
+      rendered.should have_content "event 2"
+    end
+  end
+
+  context "when there are past events" do
+    it "should display all of them" do
+      view.stub(past_events: [ stub(name: "event 1", date: Time.now),
+                          stub(name: "event 2", date: Time.now + 1.day) ])
+      render
       rendered.should have_content "event 1"
       rendered.should have_content "event 2"
     end

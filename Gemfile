@@ -1,22 +1,29 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.4'
 
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
 
-gem "thin"
+gem "unicorn"
 
-gem "haml-rails"
-gem 'jquery-rails'
-gem "devise"
-gem "omniauth-facebook"
-gem "omniauth-twitter"
-gem "omniauth-openid"
-gem "inherited_resources"
-gem "simple_form"
+gem "capistrano"
+gem "capistrano-ext"
+gem "daemons"
 gem "delayed_job"
 gem "delayed_job_mongoid"
+gem "devise"
+gem "haml-rails"
+gem "inherited_resources"
+gem 'jquery-rails'
+gem 'meta-tags', :require => 'meta_tags'
+gem "newrelic_rpm"
+gem "omniauth-facebook"
+gem "omniauth-openid"
+gem "omniauth-twitter"
+gem "rails_config"
+gem "redcarpet"
+gem "simple_form"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -48,12 +55,16 @@ group :test do
   gem 'rb-fchange', :require => false
   gem 'libnotify'
   gem 'launchy', :require => false
+  gem 'timecop'
 end
 
 group :development do
   gem 'debugger'
+  gem 'letter_opener'
+  gem 'thin'
 end
 
 group :test, :development do
+  gem 'rake'
   gem 'ffaker'
 end
