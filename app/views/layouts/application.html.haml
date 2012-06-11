@@ -31,7 +31,7 @@
             %ul.nav.pull-right
               - if user_signed_in?
                 %li
-                  %span== Hello, #{current_user.name}!
+                  %span== Hello, #{link_to current_user.name, user_profile_url}
                 %li.divider-vertical
                 %li= link_to "Sign out", destroy_user_session_path, method: :delete
               - else
