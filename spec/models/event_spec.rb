@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Event do
   it { should validate_presence_of :name  }
-  it { should validate_presence_of :date  }
+  it { should validate_presence_of :time  }
   it { should validate_presence_of :owner }
 
   it { should belong_to :owner }
@@ -17,17 +17,88 @@ describe Event do
   end
 
   describe ".future_events" do
-    it "should return events, that start in the future" do
-      future_event = FactoryGirl.create :event, date: 1.day.from_now
+    before { Timecop.freeze Time.zone.local(2012, 01, 15, 13, 00) }
+    after  { Timecop.return }
+
+    it "should return events, which start in the future" do
+      future_event = FactoryGirl.create :event, time: 1.second.from_now
       Event.future_events.should == [future_event]
     end
-    it "should return events, that start today" do
-      today_event = FactoryGirl.create :event, date: Date.today
-      Event.future_events.should == [today_event]
+    it "should return events, which start right now" do
+      future_event = FactoryGirl.create :event, time: Time.zone.now
+      Event.future_events.should == [future_event]
     end
-    it "should not return events, that were in the past" do
-      past_event = FactoryGirl.create :event, date: 1.day.ago
+    it "should not return events, which were in the past" do
+      past_event = FactoryGirl.create :event, time: 1.second.ago
       Event.future_events.should == []
+    end
+    it "should return closest events first" do
+      last_event = FactoryGirl.create :event, time: 2.seconds.from_now
+      first_event = FactoryGirl.create :event, time: 1.second.from_now
+      Event.future_events.to_a.should == [first_event, last_event]
+    end
+  end
+
+  describe ".past_events" do
+    before { Timecop.freeze Time.zone.local(2012, 01, 15, 13, 00) }
+    after  { Timecop.return }
+
+    it "should return events, which start in the past" do
+      past_event = FactoryGirl.create :event, time: 1.second.ago
+      Event.past_events.should == [past_event]
+    end
+    it "should not return events, which start right now" do
+      past_event = FactoryGirl.create :event, time: Time.zone.now
+      Event.past_events.should == []
+    end
+    it "should not return past events" do
+      past_event = FactoryGirl.create :event, time: 1.second.from_now
+      Event.past_events.should == []
+    end
+    it "should return closest events first" do
+      older_event = FactoryGirl.create :event, time: 2.seconds.ago
+      newer_event = FactoryGirl.create :event, time: 1.second.ago
+      Event.past_events.to_a.should == [newer_event, older_event]
+    end
+  end
+
+  describe ".events_within_a_week" do
+    before { Timecop.freeze Time.zone.local(2012, 01, 15, 13, 00) }
+    after  { Timecop.return }
+
+    it "should return events, which start within 7 days" do
+      future_event = FactoryGirl.create :event, time: 7.days.from_now
+      Event.events_within_a_week.to_a.should == [future_event]
+    end
+
+    it "should not return events, which start within 6 days" do
+      future_event = FactoryGirl.create :event, time: 6.days.from_now
+      Event.events_within_a_week.to_a.should == []
+    end
+
+    it "should not return events, which start within 8 days" do
+      future_event = FactoryGirl.create :event, time: 8.days.from_now
+      Event.events_within_a_week.to_a.should == []
+    end
+  end
+
+  describe ".today_events" do
+    before { Timecop.freeze Time.zone.local(2012, 01, 15, 13, 00) }
+    after  { Timecop.return }
+
+    it "should return events, which start today" do
+      future_event = FactoryGirl.create :event, time: Time.zone.now
+      Event.today_events.to_a.should == [future_event]
+    end
+
+    it "should not return events, which start yesterday" do
+      FactoryGirl.create :event, time: 1.day.ago
+      Event.today_events.to_a.should == []
+    end
+
+    it "should not return events, which start within 1 day" do
+      FactoryGirl.create :event, time: 1.day.from_now
+      Event.today_events.to_a.should == []
     end
   end
 
@@ -65,12 +136,28 @@ describe Event do
       event.important_information_changed?.should be_true
     end
     specify do
-      event.date = Date.today
-      event.important_information_changed?.should be_true
-    end
-    specify do
       event.address = "New Address"
       event.important_information_changed?.should be_true
+    end
+  end
+
+  describe "#owned_by?" do
+    let(:event) { Event.new }
+    let(:owner) { stub }
+    let(:user)  { stub }
+    before { event.stub owner: owner }
+
+    specify { event.owned_by?(owner).should be_true }
+    specify { event.owned_by?(user).should be_false }
+
+    context "nil" do
+      specify "returns false if owner isn't nil" do
+        event.owned_by?(nil).should be_false
+      end
+      specify "returns false if owner is nil" do
+        event.stub owner: nil
+        event.owned_by?(nil).should be_false
+      end
     end
   end
 end

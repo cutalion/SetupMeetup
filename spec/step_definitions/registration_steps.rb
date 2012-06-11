@@ -35,7 +35,7 @@ end
 
 step 'I click "Sign in with Google" button' do
   visit "/"
-  click_link "Sign in with Google"
+  click_link "Google"
 end
 
 step "I should be logged in with my facebook email" do

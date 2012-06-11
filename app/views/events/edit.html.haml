@@ -1,1 +1,5 @@
-= render 'form'
+.page-header
+  %h1= title "Edit \"#{resource.name}\""
+
+.row
+  = render 'form', resource: resource

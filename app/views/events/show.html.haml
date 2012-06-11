@@ -1,22 +1,18 @@
 .page-header
-  - if user_signed_in? and not current_user.participated?(resource)
-    .pull-right
+  .pull-right
+    - if user_signed_in? and not current_user.participated?(resource)
       = link_to "Join", [:join, resource], method: :put, class: 'btn btn-primary'
-  - if resource.owned_by?(current_user)
-    = link_to "Edit", [:edit, resource], class: 'btn btn-primary'
+    - if resource.owned_by?(current_user)
+      = link_to "Edit", [:edit, resource], class: 'btn btn-primary'
   %h1
-    = resource.name
+    = title resource.name
 
 .row
   .span12
 
-    %p 
-      = l resource.date, format: :human
-      - if resource.time.present?
-        = '/'
-        = l resource.time, format: :time_only
+    %p= l resource.time, format: :human
 
-    %p= resource.description
+    = markdown resource.description
 
     - if resource.address.present?
       %p== Address: #{resource.address}

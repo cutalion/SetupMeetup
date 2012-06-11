@@ -11,9 +11,6 @@ Devise.setup do |config|
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 
-  # Automatically apply schema changes in tableless databases
-  config.apply_schema = false
-
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
@@ -113,10 +110,6 @@ Devise.setup do |config|
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
 
-  # If true, uses the password salt as remember token. This should be turned
-  # to false if you are not using database authenticatable.
-  config.use_salt_as_remember_token = true
-
   # Options to be passed to the created cookie. For instance, you can set
   # :secure => true in order to force SSL only cookies.
   # config.cookie_options = {}
@@ -208,18 +201,6 @@ Devise.setup do |config|
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
-
-  # ==> OmniAuth
-  # Add a new OmniAuth provider. Check the wiki for more information on setting
-  # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  # config.omniauth :facebook, ENV['FACEBOOK_SETUPMEETUP_APP_ID'], ENV['FACEBOOK_SETUPMEETUP_SECRET']
-  # config.omniauth :twitter, ENV['TWITTER_SETUPMEETUP_KEY'], ENV['TWITTER_SETUPMEETUP_SECRET']
-  config.omniauth :open_id, :store => OpenID::Store::Filesystem.new('/tmp'), 
-                            :name => 'google', 
-                            :identifier => 'https://www.google.com/accounts/o8/id', 
-                            :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}},
-                            :require => 'omniauth-openid'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

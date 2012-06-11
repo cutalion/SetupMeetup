@@ -3,7 +3,7 @@
   %head
     %meta(charset="utf-8")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    %title= content_for?(:title) ? yield(:title) : "SetupMeetup"
+    = display_meta_tags site: 'SetupMeetup'
     = csrf_meta_tags
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
@@ -35,12 +35,10 @@
                 %li.divider-vertical
                 %li= link_to "Sign out", destroy_user_session_path, method: :delete
               - else
-                -# %li= link_to "Sign in", new_user_session_path
-                -# %li= link_to "Sign up", new_user_registration_path
-                -# %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-                -# %li= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter)
-                %li= link_to "Sign in with Google", user_omniauth_authorize_path(:google)
-
+                %li= link_to 'Sign in with'
+                %li= link_to "Google", user_omniauth_authorize_path(:google)
+                %li= link_to "Facebook", user_omniauth_authorize_path(:facebook)
+                %li= link_to "Twitter", user_omniauth_authorize_path(:twitter)
     .container
       .row
         .span12
@@ -59,3 +57,4 @@
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+    = feedback_widget

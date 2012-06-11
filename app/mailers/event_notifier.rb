@@ -1,14 +1,21 @@
 class EventNotifier < ActionMailer::Base
   default from: "info@setupmeetup.com"
+  helper :application
 
   def event_created(event, recipient)
     @event = event
-    mail(subject: "New Event", to: recipient.email)
+    @recipient = recipient
+    mail(subject: "New Meetup", to: recipient.email)
   end
 
   def event_updated(event, recipient, changed_attributes)
     @event = event
-    @changed_attributes = changed_attributes
-    mail(subject: "Event Information Changed", to: recipient.email)
+    @recipient = recipient
+    mail(subject: "Meetup Information Changed", to: recipient.email)
+  end
+
+  def week_notification(event, recipient)
+    @event = event
+    mail(subject: "Reminder about #{event.name}", to: recipient.email)
   end
 end

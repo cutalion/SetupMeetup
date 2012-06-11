@@ -1,22 +1,29 @@
 - unless user_signed_in?
   = render 'welcome'
 
-- if events.any?
-  .page-header
+.page-header
+  - if user_signed_in?
     = link_to "Create event", [:new, :event], class: "btn btn-primary pull-right"
-    %h1 Events
+  %h1 Future Events
 
+- if future_events.any?
   .row
-    - events.each do |event|
+    - future_events.each do |event|
       .span2
         = event.date.to_s(:short)
       .span10
         = link_to event.name, event_path(event)
 
 - else
-  %h2 There are no events yet.
+  %h2 There are no future events yet.
 
-  - if user_signed_in?
-    %br
-    = link_to "Create event", [:new, :event], class: "btn btn-primary btn-large"
+.page-header
+  %h1 Past Events
 
+- if past_events.any?
+  .row
+    - past_events.each do |event|
+      .span2
+        = event.date.to_s(:short)
+      .span10
+        = link_to event.name, event_path(event)
