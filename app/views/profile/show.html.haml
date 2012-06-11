@@ -1,0 +1,19 @@
+.page-header
+  %h1= title "It's your profile, %username%"
+
+%table
+  %tr
+    %td Your name:
+    %td #{current_user.name}
+  %tr
+    %td Related providers: 
+    %td.related-providers
+      - links_to_related_providers.each do |x| 
+        = x
+  - unless allowed_providers.empty?
+    %tr
+      %td Allowed providers:
+      %td.allowed-providers
+        - links_to_allowed_providers.each do |x|
+          = x
+
