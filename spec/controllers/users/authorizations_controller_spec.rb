@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Users::AuthorizationController do
+describe Users::AuthorizationsController do
 
-  describe "DELETE 'delete'" do
+  describe "DELETE 'destroy'" do
     let(:user) { FactoryGirl.create :user }
     before {
       user.authorizations << FactoryGirl.create(:authorization, provider: 'google')
@@ -11,13 +11,13 @@ describe Users::AuthorizationController do
     it { user.authorizations.count.should eql 2 }
 
     context 'non-authorized user' do
-      before { get 'delete', id: 'google' }
+      before { get 'destroy', id: 'google' }
       it { should redirect_to new_user_session_url }
     end
 
     context 'authorized author' do
       before { sign_in user }
-      before { get 'delete', id: 'google' }
+      before { get 'destroy', id: 'google' }
       it { should redirect_to user_profile_url }
       it "should destroy authorization" do
         user.authorizations.count.should eql 1
