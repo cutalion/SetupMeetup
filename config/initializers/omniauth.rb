@@ -7,4 +7,5 @@ Devise.setup do |config|
 
   config.omniauth :facebook, ENV['FACEBOOK_SETUPMEETUP_APP_ID'], ENV['FACEBOOK_SETUPMEETUP_SECRET']
   config.omniauth :twitter, ENV['TWITTER_SETUPMEETUP_KEY'], ENV['TWITTER_SETUPMEETUP_SECRET']
+  config.omniauth :developer unless Rails.env.production?
 end

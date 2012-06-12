@@ -1,19 +1,10 @@
 .page-header
-  %h1= title "It's your profile, %username%"
+  %h1= title "Your profile"
 
-%table
-  %tr
-    %td Your name:
-    %td #{current_user.name}
-  %tr
-    %td Related providers: 
-    %td.related-providers
-      - links_to_related_providers.each do |x| 
-        = x
-  - unless allowed_providers.empty?
-    %tr
-      %td Allowed providers:
-      %td.allowed-providers
-        - links_to_allowed_providers.each do |x|
-          = x
-
+.hero-unit
+  %h2 Assigned providers
+  %p
+    You can log in through a few providers
+  %p#providers-list
+    - providers.each do |x|
+      = x

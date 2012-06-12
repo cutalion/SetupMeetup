@@ -9,14 +9,14 @@ describe "profile/show" do
     before { user.authorizations << FactoryGirl.create(:authorization, provider: 'google') }
     before { render }
     it { 
-      rendered.should have_selector 'td.related-providers a.btn.btn-primary.disabled', 
+      rendered.should have_selector 'p#providers-list a.btn.btn-primary.disabled.remove-provider', 
                                     content: 'Google',
                                     href: '#'
     }
     it 'should have allowed providers' do
-      rendered.should have_selector 'td.allowed-providers a.btn.btn-primary', 
+      rendered.should have_selector 'p#providers-list a.btn.btn-primary.add-provider', 
                                     content: 'Twitter'
-      rendered.should have_selector 'td.allowed-providers a.btn.btn-primary', 
+      rendered.should have_selector 'p#providers-list a.btn.btn-primary.add-provider', 
                                     content: 'Facebook'
     end
   end
@@ -29,18 +29,18 @@ describe "profile/show" do
     }
     before { render }
     it 'should have not allowed providers' do
-      rendered.should_not have_selector 'td.allowed-providers'
+      # rendered.should_not have_selector 'p#providers-list a.btn.btn-primary.add-provider'
     end
     it 'should have assigned providers' do
-      rendered.should have_selector 'td.related-providers a.btn.btn-primary', 
+      rendered.should have_selector 'p#providers-list a.btn.btn-primary.remove-provider', 
                                     content: 'Twitter',
                                     href: users_authorization_url('twitter'),
                                     method: :delete
-      rendered.should have_selector 'td.related-providers a.btn.btn-primary', 
+      rendered.should have_selector 'p#providers-list a.btn.btn-primary.remove-provider', 
                                     content: 'Facebook',
                                     href: users_authorization_url('facebook'),
                                     method: :delete
-      rendered.should have_selector 'td.related-providers a.btn.btn-primary', 
+      rendered.should have_selector 'p#providers-list a.btn.btn-primary.remove-provider', 
                                     content: 'Google',
                                     href: users_authorization_url('google'),
                                     method: :delete

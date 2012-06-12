@@ -35,10 +35,13 @@
                 %li.divider-vertical
                 %li= link_to "Sign out", destroy_user_session_path, method: :delete
               - else
-                %li= link_to 'Sign in with'
-                %li= link_to "Google", user_omniauth_authorize_path(:google)
-                %li= link_to "Facebook", user_omniauth_authorize_path(:facebook)
-                %li= link_to "Twitter", user_omniauth_authorize_path(:twitter)
+                %li.dropdown
+                  %a.dropdown-toggle{'data-toggle' => 'dropdown', href: '#'} 
+                    Sign In
+                    %b.caret
+                  %ul.dropdown-menu
+                    - omniauth_providers.each do |p, u|
+                      %li= link_to p.to_s.humanize, u
     .container
       .row
         .span12
