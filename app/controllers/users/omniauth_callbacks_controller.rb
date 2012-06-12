@@ -1,5 +1,7 @@
-class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+class Users::OmniauthCallbacksController < ApplicationController
   
+  skip_before_filter :verify_authenticity_token
+
   def facebook;  oauth_callback; end
   def twitter;   oauth_callback; end
   def google;    oauth_callback; end
