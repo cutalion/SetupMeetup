@@ -31,16 +31,17 @@
             %ul.nav.pull-right
               - if user_signed_in?
                 %li
-                  %span== Hello, #{current_user.name}!
+                  %span== Hello, #{link_to current_user.name, user_profile_url}
                 %li.divider-vertical
                 %li= link_to "Sign out", destroy_user_session_path, method: :delete
               - else
-                -# %li= link_to "Sign in", new_user_session_path
-                -# %li= link_to "Sign up", new_user_registration_path
-                -# %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-                -# %li= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter)
-                %li= link_to "Sign in with Google", user_omniauth_authorize_path(:google)
-
+                %li.dropdown
+                  %a.dropdown-toggle{'data-toggle' => 'dropdown', href: '#'} 
+                    Sign In
+                    %b.caret
+                  %ul.dropdown-menu
+                    - omniauth_providers.each do |p, u|
+                      %li= link_to p.to_s.humanize, u
     .container
       .row
         .span12

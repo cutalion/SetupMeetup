@@ -67,4 +67,6 @@ end
 group :test, :development do
   gem 'rake'
   gem 'ffaker'
+  gem 'pry'
+  gem 'pry-debugger'
 end

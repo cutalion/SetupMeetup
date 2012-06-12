@@ -16,4 +16,14 @@ module ApplicationHelper
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
+
+  def omniauth_providers
+    providers = {
+      :google   => user_omniauth_authorize_path(:google),
+      :facebook => user_omniauth_authorize_path(:facebook),
+      :twitter  => user_omniauth_authorize_path(:twitter),
+    }
+    providers[:developer] = user_omniauth_authorize_path(:developer) unless Rails.env.production?
+    providers
+  end
 end

@@ -1,0 +1,10 @@
+.page-header
+  %h1= title "Your profile"
+
+.hero-unit
+  %h2 Assigned providers
+  %p
+    You can log in through a few providers
+  %p#providers-list
+    - providers.each do |x|
+      = x
