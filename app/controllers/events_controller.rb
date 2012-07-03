@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   inherit_resources
+  actions :all, except: [ :destroy ]
   before_filter :authenticate_user!, except: :show
 
   def create

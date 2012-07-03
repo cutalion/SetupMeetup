@@ -4,10 +4,10 @@ describe EventsController do
   let(:user)  { FactoryGirl.create :user  }
   let(:event) { FactoryGirl.create :event, owner: user }
 
-  [:new, :create, :edit, :update, :destroy].each do |action|
-    it { should require_authentication_for action }
-  end
-
+  it { should require_authentication_for :new }
+  it { should require_authentication_for :create }
+  it { should require_authentication_for :edit, id: event.id }
+  it { should require_authentication_for :update, id: event.id }
   it { should_not require_authentication_for :show, id: event.id }
 
   describe "GET on edit" do

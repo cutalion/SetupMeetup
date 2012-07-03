@@ -12,7 +12,7 @@ class User
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable
+         :omniauthable, :omniauth_providers => [:facebook, :twitter, :google]
 
   ## Database authenticatable
   field :email,              :type => String, :null => false, :default => ""
