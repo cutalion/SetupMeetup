@@ -1,5 +1,6 @@
 [![Build Status](https://secure.travis-ci.org/cutalion/SetupMeetup.png)](http://travis-ci.org/cutalion/SetupMeetup)
 [![Dependency Status](https://gemnasium.com/cutalion/SetupMeetup.png)](https://gemnasium.com/cutalion/SetupMeetup)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/cutalion/SetupMeetup)
 
 # SetupMeetup TODO/Thoughts/Planning
 
