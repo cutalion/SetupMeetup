@@ -21,7 +21,7 @@ describe EventNotifier do
     its(:subject) { should match /Meetup Information Changed/ }
 
     context "when time of event changed" do
-      before { event.time = Time.local 2012, 8, 3, 19, 00 }
+      before { event.time = Time.zone.local 2012, 8, 3, 19, 00 }
 
       its(:body) { should match /August 03, Friday at 19:00/   }
     end
