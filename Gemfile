@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
-gem "mongoid", "~> 2.4"
+gem "mongoid", "~> 3.0"
 gem "bson_ext", "~> 1.5"
 
 gem "unicorn"
@@ -67,4 +67,5 @@ end
 group :test, :development do
   gem 'rake'
   gem 'ffaker'
+  gem 'pry'
 end

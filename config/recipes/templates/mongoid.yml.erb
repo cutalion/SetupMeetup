@@ -1,5 +1,11 @@
 <%= rails_env %>:
-  database: <%= mongo_database %>
-  username: <%= mongo_user %>
-  password: <%= mongo_password %>
-  host: <%= mongo_host %>
+  sessions:
+    default:
+      database: <%= mongo_database %>
+      username: <%= mongo_user %>
+      password: <%= mongo_password %>
+      hosts:
+        - <%= mongo_host %>:<%= mongo_port %>
+      options:
+        consistency: :strong
+  options:

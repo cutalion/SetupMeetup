@@ -5,7 +5,7 @@ class User
   include PasswordGenerator
 
   has_many :authorizations, dependent: :destroy
-  has_many :owned_events, foreign_key: :owner_id, class_name: "Event"
+  has_many :owned_events, foreign_key: :owner_id, class_name: "Event", inverse_of: :owner
   has_and_belongs_to_many :events
 
   # Include default devise modules. Others available are:
@@ -15,8 +15,8 @@ class User
          :omniauthable, :omniauth_providers => [:facebook, :twitter, :google]
 
   ## Database authenticatable
-  field :email,              :type => String, :null => false, :default => ""
-  field :encrypted_password, :type => String, :null => false, :default => ""
+  field :email,              :type => String, :default => ""
+  field :encrypted_password, :type => String, :default => ""
 
   ## Recoverable
   field :reset_password_token,   :type => String
@@ -97,6 +97,10 @@ class User
 
   def email_required?
     !@skip_email_presence_validation
+  end
+
+  def start_event(event_attributes)
+    owned_events.create event_attributes
   end
 
   def participated?(event)

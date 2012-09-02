@@ -9,8 +9,9 @@ class Event
   field :time,       type: DateTime
   field :owner_id,   type: Integer
 
-  belongs_to :owner, class_name: "User"
-  has_and_belongs_to_many :participants, class_name: "User"
+  belongs_to :owner, class_name: "User", inverse_of: :owned_events
+  has_and_belongs_to_many :participants, class_name: "User", foreign_key: :participant_ids
+  has_and_belongs_to_many :users
 
   validates :name, :time, :owner, presence: true
 
@@ -32,7 +33,7 @@ class Event
     return false if user.nil?
     owner == user
   end
-  
+
   def date
     time.to_date if time.respond_to? :to_date
   end

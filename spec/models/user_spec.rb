@@ -160,4 +160,16 @@ describe User do
     end
   end
 
+  describe "#start_event" do
+    let(:user) { FactoryGirl.create :user }
+    before { @event = user.start_event FactoryGirl.attributes_for(:event) }
+
+    it "should create new event" do
+      @event.should be_persisted
+    end
+
+    it "should be an owner of the created event" do
+      @event.owner.should == user
+    end
+  end
 end

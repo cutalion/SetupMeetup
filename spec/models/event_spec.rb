@@ -123,8 +123,9 @@ describe Event do
   specify "owner should be participant of the event also" do
     Mongoid.observers.enable(:all)
 
-    event = FactoryGirl.create :event
-    event.participants.should include event.owner
+    owner = FactoryGirl.create :user
+    event = owner.start_event FactoryGirl.attributes_for(:event, owner: nil)
+    event.participants.should include owner
   end
 
   describe "#important_information_changed?" do

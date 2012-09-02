@@ -1,5 +1,6 @@
 set_default(:mongo_host, "localhost")
-set_default(:mongo_user) { "#{application}_#{rails_env}" }
+set_default(:mongo_port, "27017")
+set_default(:mongo_user)     { "#{application}_#{rails_env}" }
 set_default(:mongo_password) { Capistrano::CLI.password_prompt "Mongo password: " }
 set_default(:mongo_database) { "#{application}_#{rails_env}" }
 
