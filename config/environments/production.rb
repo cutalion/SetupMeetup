@@ -69,7 +69,7 @@ SetupMeetup::Application.configure do
     :user_name            => Settings.gmail_username,
     :password             => Settings.gmail_password,
     :authentication       => 'plain',
-    :enable_starttls_auto => true  
+    :enable_starttls_auto => true
   }
   config.action_mailer.default_url_options = { host: "setupmeetup.com" }
 end
