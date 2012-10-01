@@ -6,6 +6,7 @@ class User
 
   has_many :authorizations, dependent: :destroy
   has_many :owned_events, foreign_key: :owner_id, class_name: "Event", inverse_of: :owner
+  has_many :owned_comments, foreign_key: :owner_id, class_name: "Comment", inverse_of: :owner
   has_and_belongs_to_many :events
 
   # Include default devise modules. Others available are:
