@@ -48,3 +48,14 @@ ul.participants {
 .block_heading {
   margin: 1em 0;
 }
+
+#comment_body {
+  display: block;
+}
+
+.comment {
+  margin: 0 0 10px 0;
+  .name {
+    font-weight: 900;
+  }
+}

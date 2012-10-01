@@ -12,6 +12,7 @@ class Event
   belongs_to :owner, class_name: "User", inverse_of: :owned_events
   has_and_belongs_to_many :participants, class_name: "User", foreign_key: :participant_ids
   has_and_belongs_to_many :users
+  has_many :comments, inverse_of: :event
 
   validates :name, :time, :owner, presence: true
 
