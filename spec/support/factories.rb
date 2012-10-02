@@ -18,4 +18,10 @@ FactoryGirl.define do
     description "Next Meetup!"
     owner { FactoryGirl.create :user }
   end
+
+  factory :comment do
+    association :owner, factory: :user
+    association :event
+    sequence(:body) { |n| "body #{n}" }
+  end
 end

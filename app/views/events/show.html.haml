@@ -20,7 +20,7 @@
 .row
   .span12
     %h3.block_heading
-      Participants 
+      Participants
       %small
         == (#{resource.participants.count})
 
@@ -32,3 +32,17 @@
             %li
               = gravatar_for participant
               = participant.name
+
+.row
+  .span6
+    %h3.block_heading
+      Comments
+      %small (#{resource.comments.count})
+
+= render partial: 'comment', collection: resource.comments.desc(:created_at)
+
+.row
+  .span12
+    = form_for :comment, url: [ resource, :comments ] do |f|
+      = f.text_area :body, class: 'span6', rows: 5
+      = f.submit "Add comment", class: 'btn'
