@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
   def destroy
     event = comment.event
 
-    if comment.owner == current_user || event.owner == current_user
+    if comment.deletable_by?(current_user)
       comment.destroy
     else
       flash.alert = EVENT_OR_COMMENT_OWNER_ONLY
