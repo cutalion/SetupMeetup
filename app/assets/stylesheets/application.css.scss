@@ -53,9 +53,48 @@ ul.participants {
   display: block;
 }
 
+form.new-comment {
+  .image {
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin: 0 10px 10px 0;
+  }
+
+  textarea, input {
+    margin-left: 42px;
+  }
+}
+
 .comment {
   margin: 0 0 10px 0;
+  overflow: hidden;
+
+  .body {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #ccc;
+  }
+
+  .image {
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin: 0 10px 10px 0;
+  }
+
+  .meta {
+    color: #888;
+    font-size: 75%;
+  }
+
   .name {
+    color: #222;
+    font-size: 125%;
     font-weight: 900;
+  }
+
+  .meta, .body {
+    margin-left: 42px;
   }
 }

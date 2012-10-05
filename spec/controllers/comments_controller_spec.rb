@@ -39,6 +39,8 @@ describe CommentsController do
 
 
   describe "destroying" do
+    let(:comment) { FactoryGirl.create(:comment, event: event) }
+
     before { sign_in user }
 
     context 'unknown comment' do
@@ -47,31 +49,18 @@ describe CommentsController do
       specify { flash.alert.should == CommentsController::COMMENT_NOT_FOUND }
     end
 
-    context 'as the event owner' do
-      let(:comment) { FactoryGirl.create(:comment, event: event) }
-
+    context 'deletable' do
+      before  { controller.stub(:comment).and_return(comment) }
+      before  { comment.should_receive(:deletable_by?).and_return(true) }
       before  { delete :destroy, id: comment.id }
-      it      { should redirect_to event }
       specify { event.comments.count.should == 0 }
     end
 
-    context 'as the comment owner' do
-      let(:event) { FactoryGirl.create(:event) }
-      let(:comment) { FactoryGirl.create(:comment, event: event, owner: user) }
-
-      before  { event.add_participant(user) }
+    context 'non-deletable' do
+      before  { controller.stub(:comment).and_return(comment) }
+      before  { comment.should_receive(:deletable_by?).and_return(false) }
       before  { delete :destroy, id: comment.id }
-      it      { should redirect_to event }
-      specify { event.comments.count.should == 0 }
-    end
-
-    context 'as a non-owner of the comment' do
-      let(:event)   { FactoryGirl.create(:event) }
-      let(:comment) { FactoryGirl.create(:comment, event: event) }
-
-      before  { event.add_participant(user) }
-      before  { delete :destroy, id: comment.id }
-      it      { should redirect_to event }
+      it      { should redirect_to comment.event }
       specify { flash.alert.should == CommentsController::EVENT_OR_COMMENT_OWNER_ONLY }
     end
   end

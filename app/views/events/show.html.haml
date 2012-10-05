@@ -39,10 +39,13 @@
       Comments
       %small (#{resource.comments.count})
 
-= render partial: 'comment', collection: resource.comments.desc(:created_at)
+= render partial: 'comment', collection: resource.comments.asc(:created_at)
 
-.row
-  .span12
-    = form_for :comment, url: [ resource, :comments ] do |f|
-      = f.text_area :body, class: 'span6', rows: 5
-      = f.submit "Add comment", class: 'btn'
+- if current_user
+  .row
+    .span12
+      = form_for :comment, url: [ resource, :comments ], html: { class: 'new-comment' } do |f|
+        .image
+          = gravatar_for current_user
+        = f.text_area :body, class: 'span6', rows: 5
+        = f.submit "Add comment", class: 'btn'

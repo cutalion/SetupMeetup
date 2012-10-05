@@ -13,4 +13,8 @@ class Comment
 
   attr_accessible :body
 
+  def deletable_by?(u)
+    u && (self.owner_id == u.id || self.event.owner_id == u.id)
+  end
+
 end

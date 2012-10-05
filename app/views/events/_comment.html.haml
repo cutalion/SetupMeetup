@@ -1,5 +1,15 @@
 - c = comment
 .row.comment
-  .span12
-    .name #{c.owner.name} said:
+  .span6
+    .image
+      = gravatar_for c.owner
+
+    .meta
+      %span.name= c.owner.name
+      \/
+      %span.date= c.created_at.strftime("%B %d, %Y %H:%M")
+      - if c.deletable_by?(current_user)
+        \/
+        %span.delete= link_to "delete", c, method: 'delete'
+
     .body= markdown(c.body)
