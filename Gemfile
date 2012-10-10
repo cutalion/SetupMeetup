@@ -41,14 +41,13 @@ end
 group :test do
   gem "rspec-rails"
   gem "capybara"
-  # spyromus: Can't build on Mac OS X, sorry. Maybe "poltergeist"?
-  # gem "capybara-webkit"
+  gem "poltergeist"
   gem 'turnip'
   gem 'mongoid-rspec'
   gem "spin"
   gem "guard"
   gem "guard-rspec"
-  gem "guard-spin" 
+  gem "guard-spin"
   gem "factory_girl_rails"
   gem 'database_cleaner'
   gem 'rb-inotify', :require => false
