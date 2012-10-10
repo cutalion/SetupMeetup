@@ -1,7 +1,7 @@
 RSpec::Matchers.define :require_authentication_for do |action, params|
   match do |controller|
     send verb_for(action), action, params
-    response.redirect_url =~ /sign_in/
+    flash.alert.should =~ /need an account/
   end
 
   failure_message_for_should do |controller|

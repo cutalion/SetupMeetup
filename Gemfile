@@ -12,7 +12,6 @@ gem "capistrano-ext"
 gem "daemons"
 gem "delayed_job"
 gem "delayed_job_mongoid"
-gem "devise"
 gem "haml-rails"
 gem "inherited_resources"
 gem 'jquery-rails'
@@ -24,6 +23,7 @@ gem "omniauth-twitter"
 gem "rails_config"
 gem "redcarpet"
 gem "simple_form"
+gem "nestful"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -41,7 +41,8 @@ end
 group :test do
   gem "rspec-rails"
   gem "capybara"
-  gem "capybara-webkit"
+  # spyromus: Can't build on Mac OS X, sorry. Maybe "poltergeist"?
+  # gem "capybara-webkit"
   gem 'turnip'
   gem 'mongoid-rspec'
   gem "spin"

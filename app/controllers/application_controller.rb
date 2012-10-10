@@ -5,11 +5,28 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
-  end
-
   def not_found
     render file: File.join(Rails.root, "public", "404"), layout: false, status: :not_found
   end
+
+  def current_user=(user)
+    session['uid'] = user.try(:id)
+  end
+
+  def current_user
+    @current_user ||= session['uid'] ? User.find(session['uid']) : nil
+  end
+  helper_method :current_user
+
+  def authenticate_user!
+    unless current_user
+      redirect_to :root, alert: 'You need an account to access this feature.'
+    end
+  end
+
+  def user_signed_in?
+    !!current_user
+  end
+  helper_method :user_signed_in?
+
 end

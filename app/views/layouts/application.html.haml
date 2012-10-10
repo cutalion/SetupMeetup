@@ -3,6 +3,8 @@
   %head
     %meta(charset="utf-8")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    - if current_user
+      %meta{ name: 'currentUserEmail', content: current_user.email }
     = display_meta_tags site: 'SetupMeetup'
     = csrf_meta_tags
     / Le HTML5 shim, for IE6-8 support of HTML elements
@@ -26,20 +28,14 @@
           .container.nav-collapse
             %ul.nav
               %li= link_to "Create event", new_event_path
-              -#%li= link_to "Link 2", "/path2"
-              -#%li= link_to "Link 3", "/path3"
             %ul.nav.pull-right
               - if user_signed_in?
                 %li
                   %span== Hello, #{current_user.name}!
                 %li.divider-vertical
-                %li= link_to "Sign out", destroy_user_session_path, method: :delete
+                %li= link_to "Sign out", '#', class: 'logout'
               - else
-                -# %li= link_to "Sign in", new_user_session_path
-                -# %li= link_to "Sign up", new_user_registration_path
-                -# %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-                -# %li= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter)
-                %li= link_to "Sign in with Google", user_omniauth_authorize_path(:google)
+                %li= link_to "Sign in with email", '#', class: 'login'
 
     .container
       .row
@@ -59,4 +55,5 @@
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+    = javascript_include_tag "https://login.persona.org/include.js"
     = feedback_widget
