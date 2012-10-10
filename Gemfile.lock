@@ -30,7 +30,6 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.2)
     arel (3.0.2)
-    bcrypt-ruby (3.0.1)
     bson (1.7.0)
     bson_ext (1.7.0)
       bson (~> 1.7.0)
@@ -50,9 +49,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    capybara-webkit (0.12.1)
-      capybara (>= 1.0.0, < 1.2)
-      json
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
     coderay (1.0.7)
@@ -79,11 +75,6 @@ GEM
     delayed_job_mongoid (2.0.0)
       delayed_job (~> 3.0)
       mongoid (~> 3.0)
-    devise (2.1.2)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (~> 3.1)
-      warden (~> 1.2.1)
     diff-lcs (1.1.3)
     erubis (2.7.0)
     eventmachine (0.12.10)
@@ -168,6 +159,8 @@ GEM
     moped (1.2.1)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    nestful (0.0.8)
+      activesupport (>= 3.0.0.beta)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -202,7 +195,6 @@ GEM
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
     origin (1.0.8)
-    orm_adapter (0.4.0)
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -309,8 +301,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    warden (1.2.1)
-      rack (>= 1.0)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -322,14 +312,12 @@ DEPENDENCIES
   capistrano
   capistrano-ext
   capybara
-  capybara-webkit
   coffee-rails (~> 3.2.1)
   daemons
   database_cleaner
   debugger
   delayed_job
   delayed_job_mongoid
-  devise
   factory_girl_rails
   ffaker
   guard
@@ -344,6 +332,7 @@ DEPENDENCIES
   meta-tags
   mongoid (~> 3.0)
   mongoid-rspec
+  nestful
   newrelic_rpm
   omniauth-facebook
   omniauth-openid
