@@ -1,3 +1,4 @@
+require 'securerandom'
 namespace :settings do
   desc "Generate production settings file."
   task :setup, roles: :app do

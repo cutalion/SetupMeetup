@@ -7,8 +7,6 @@ gem "bson_ext", "~> 1.5"
 
 gem "unicorn"
 
-gem "capistrano"
-gem "capistrano-ext"
 gem "daemons"
 gem "delayed_job"
 gem "delayed_job_mongoid"
@@ -59,6 +57,9 @@ group :test do
 end
 
 group :development do
+  gem "capistrano", require: false
+  gem "capistrano-ext", require: false
+  gem "rvm-capistrano", require: false
   gem 'debugger'
   gem 'letter_opener'
   gem 'thin'

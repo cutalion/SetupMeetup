@@ -15,7 +15,7 @@ load "config/recipes/check"
 load "config/recipes/settings"
 load "config/recipes/delayed_job"
 
-server "91.218.28.28", :web, :app, :db, primary: true
+server "setupmeetup.com", :web, :app, :db, primary: true
 
 set :application, "setupmeetup"
 set :user, "setupmeetup"

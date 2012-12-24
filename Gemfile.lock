@@ -263,6 +263,8 @@ GEM
       rspec (~> 2.11.0)
     ruby-openid (2.2.0)
     rubyzip (0.9.9)
+    rvm-capistrano (1.2.7)
+      capistrano (>= 2.0.0)
     sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -356,6 +358,7 @@ DEPENDENCIES
   rb-inotify
   redcarpet
   rspec-rails
+  rvm-capistrano
   sass-rails (~> 3.2.3)
   simple_form
   spin
